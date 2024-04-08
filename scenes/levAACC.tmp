@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://csoxybuwshqhu"]
+
+[ext_resource type="PackedScene" uid="uid://q8v04iswc7b" path="res://scenes/player.tscn" id="2_m8xtx"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="2_myy6m"]
+[ext_resource type="Texture2D" uid="uid://c0vxtaghy7271" path="res://Backgrounds/road.png" id="2_pcuta"]
+[ext_resource type="Script" path="res://scenes/RoadMonig.gd" id="3_gltqv"]
+
+[node name="level" type="Node2D"]
+position = Vector2(180, 168)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_m8xtx")]
+position = Vector2(-99, 318)
+script = ExtResource("2_myy6m")
+
+[node name="Road1" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1886.5, 102.72)
+scale = Vector2(1.19127, 1.82638)
+skew = -0.174533
+texture = ExtResource("2_pcuta")
+script = ExtResource("3_gltqv")
+speed = 10.0
+
+[node name="Road2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(6125, 103)
+scale = Vector2(1.19127, 1.82638)
+skew = -0.174533
+texture = ExtResource("2_pcuta")
+script = ExtResource("3_gltqv")
+speed = 10.0

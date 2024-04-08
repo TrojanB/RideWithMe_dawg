@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://csoxybuwshqhu"]
+
+[ext_resource type="Script" path="res://scenes/spawnCars.gd" id="1_4y6k3"]
+[ext_resource type="PackedScene" uid="uid://q8v04iswc7b" path="res://scenes/player.tscn" id="2_m8xtx"]
+[ext_resource type="Texture2D" uid="uid://c0vxtaghy7271" path="res://Backgrounds/road.png" id="2_pcuta"]
+[ext_resource type="Script" path="res://scenes/RoadMonig.gd" id="3_gltqv"]
+[ext_resource type="PackedScene" uid="uid://cgok7ckghrf7w" path="res://Enemies/ambulance.tscn" id="4_oaplb"]
+
+[node name="level" type="Node2D"]
+position = Vector2(180, 168)
+script = ExtResource("1_4y6k3")
+
+[node name="Player" parent="." instance=ExtResource("2_m8xtx")]
+position = Vector2(-99, 318)
+
+[node name="Road1" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1886.5, 102.72)
+scale = Vector2(1.19127, 1.82638)
+skew = -0.174533
+texture = ExtResource("2_pcuta")
+script = ExtResource("3_gltqv")
+
+[node name="Road2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(6125, 103)
+scale = Vector2(1.19127, 1.82638)
+skew = -0.174533
+texture = ExtResource("2_pcuta")
+script = ExtResource("3_gltqv")
+
+[node name="Enemy" parent="." instance=ExtResource("4_oaplb")]
+position = Vector2(570, 289)
+
+[connection signal="speed_changed" from="Player" to="Road1" method="_on_player_speed_changed"]
+[connection signal="speed_changed" from="Player" to="Road2" method="_on_player_speed_changed"]

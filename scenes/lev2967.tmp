@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://csoxybuwshqhu"]
+
+[ext_resource type="Texture2D" uid="uid://dqa260acx7dtq" path="res://Backgrounds/highway2.png" id="2_843oc"]
+[ext_resource type="PackedScene" uid="uid://q8v04iswc7b" path="res://scenes/player.tscn" id="2_m8xtx"]
+[ext_resource type="Script" path="res://scenes/Road_moving.gd" id="3_slmnv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3ubd"]
+size = Vector2(548.421, 1242.11)
+
+[node name="level" type="Node2D"]
+position = Vector2(180, 168)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_m8xtx")]
+position = Vector2(-99, 318)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(2225, 89)
+scale = Vector2(1.9, 1.9)
+skew = -0.549779
+texture = ExtResource("2_843oc")
+script = ExtResource("3_slmnv")
+speed = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2"]
+position = Vector2(-3520.53, 33.6842)
+shape = SubResource("RectangleShape2D_p3ubd")

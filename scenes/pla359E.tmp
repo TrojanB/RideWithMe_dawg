@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://q8v04iswc7b"]
+
+[ext_resource type="Texture2D" uid="uid://df7rc3c1padjq" path="res://Cars/SUPERCAR/White_SUPERCAR_CLEAN_All_000-sheet.png" id="1_2ltq8"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_xav44"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ceiv"]
+size = Vector2(16, 30)
+
+[sub_resource type="Animation" id="Animation_ifirc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_yr03r"]
+resource_name = "go_down"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_g3n6o"]
+resource_name = "go_up"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [44]
+}
+
+[sub_resource type="Animation" id="Animation_yswwy"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_0vnax"]
+resource_name = "start_up"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [47, 46, 45]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fklqm"]
+_data = {
+"RESET": SubResource("Animation_ifirc"),
+"go_down": SubResource("Animation_yr03r"),
+"go_up": SubResource("Animation_g3n6o"),
+"idle": SubResource("Animation_yswwy"),
+"start_up": SubResource("Animation_0vnax")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(444, 291)
+scale = Vector2(1.9, 1.9)
+script = ExtResource("1_xav44")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(103, 56)
+texture = ExtResource("1_2ltq8")
+hframes = 7
+vframes = 7
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+position = Vector2(30, 4)
+shape = SubResource("RectangleShape2D_8ceiv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fklqm")
+}

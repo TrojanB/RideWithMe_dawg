@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnd4iu0vs8o32"]
+
+[ext_resource type="Texture2D" uid="uid://bfqnsw6yhylk2" path="res://CarsSprites/White_Minivan.png" id="1_80fxk"]
+[ext_resource type="Script" path="res://scenes/car.gd" id="2_85pi8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ca4ce"]
+size = Vector2(75, 20)
+
+[node name="White_Minivan" type="Sprite2D"]
+position = Vector2(548, 290)
+texture = ExtResource("1_80fxk")
+hframes = 7
+vframes = 7
+frame = 24
+script = ExtResource("2_85pi8")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2.5, 6.75)
+shape = SubResource("RectangleShape2D_ca4ce")

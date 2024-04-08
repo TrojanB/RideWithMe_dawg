@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cym6qwuwhenjv"]
+
+[ext_resource type="Texture2D" uid="uid://dm8cm24g4ppsx" path="res://CarsSprites/3.png" id="1_hfwqw"]
+[ext_resource type="Script" path="res://scenes/car.gd" id="2_h5yey"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ca4ce"]
+size = Vector2(75, 20)
+
+[node name="Black_Wagon" type="Sprite2D"]
+position = Vector2(548, 290)
+texture = ExtResource("1_hfwqw")
+hframes = 7
+vframes = 7
+frame = 24
+script = ExtResource("2_h5yey")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_ca4ce")

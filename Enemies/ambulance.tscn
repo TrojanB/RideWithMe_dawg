@@ -8,15 +8,14 @@ radius = 7.36842
 height = 86.444
 
 [node name="ambulance" type="Sprite2D"]
-z_index = 1
+z_as_relative = false
 y_sort_enabled = true
-position = Vector2(566, 344)
+position = Vector2(560, 325)
 scale = Vector2(1.9, 1.9)
 texture = ExtResource("1_suwf0")
 offset = Vector2(-1.05264, -14.7368)
 hframes = 7
 vframes = 7
-frame = 1
 script = ExtResource("2_pj6l0")
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -152,12 +152,15 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+z_as_relative = false
 y_sort_enabled = true
 position = Vector2(444, 291)
 scale = Vector2(1.9, 1.9)
 script = ExtResource("1_xav44")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(0, -17.3684)
 texture = ExtResource("2_tr8v0")
 hframes = 7

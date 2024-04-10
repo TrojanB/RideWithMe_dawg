@@ -10,6 +10,7 @@ var timeCounter:float = 0
 signal speed_changed(speed:float)
 
 @onready var animation:AnimationPlayer = $AnimationPlayer
+@onready var collisionAnimation = $Collision
 
 var start_turning_up = false
 var start_turning_down = false
@@ -60,3 +61,9 @@ func smooth_speed_change(speed:float):
 		
 func wait(seconds: float):
 	await get_tree().create_timer(seconds).timeout
+
+
+func _on_area_2d_area_entered(car):
+	print("hitted car")
+	speed_changed.emit(0)
+	collisionAnimation.play("collision")

@@ -1,22 +1,143 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgok7ckghrf7w"]
+[gd_scene load_steps=9 format=3 uid="uid://cgok7ckghrf7w"]
 
 [ext_resource type="Texture2D" uid="uid://712vg5fxetm" path="res://CarsSprites/1.png" id="1_suwf0"]
 [ext_resource type="Script" path="res://scenes/car.gd" id="2_pj6l0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3wer"]
-size = Vector2(94, 47)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gdnrf"]
+radius = 7.36842
+height = 86.444
+
+[sub_resource type="Animation" id="Animation_gd4d6"]
+resource_name = "go_up"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [25, 26, 27, 28]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.01, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 2.0944]
+}
+
+[sub_resource type="Animation" id="Animation_dj334"]
+resource_name = "go_down"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [23, 22, 21, 20]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 1.0472]
+}
+
+[sub_resource type="Animation" id="Animation_64o0p"]
+resource_name = "idle"
+length = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_s4hd4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ijt3"]
+_data = {
+"RESET": SubResource("Animation_s4hd4"),
+"go_down": SubResource("Animation_dj334"),
+"go_up": SubResource("Animation_gd4d6"),
+"idle": SubResource("Animation_64o0p")
+}
 
 [node name="ambulance" type="Sprite2D"]
-position = Vector2(564, 316)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(566, 344)
 scale = Vector2(1.9, 1.9)
 texture = ExtResource("1_suwf0")
+offset = Vector2(-1.05264, -14.7368)
 hframes = 7
 vframes = 7
 frame = 24
 script = ExtResource("2_pj6l0")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-2.10526, 3.68421)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, -3.5)
-shape = SubResource("RectangleShape2D_v3wer")
+position = Vector2(-0.526303, -9.47369)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gdnrf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3ijt3")
+}
+speed_scale = 2.0

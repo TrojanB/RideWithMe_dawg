@@ -10,3 +10,6 @@ func _ready():
 	frame = 0
 func _physics_process(delta):
 	position += Vector2(-speed,0)
+
+func stop_car():
+	speed = 0

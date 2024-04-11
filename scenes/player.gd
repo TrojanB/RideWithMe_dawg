@@ -1,19 +1,27 @@
 extends CharacterBody2D
 
 
-@export var current_speed:float = 5
-var previous_speed:float
-var speeds = [20, 30, 20, 25]
+var speeds = [10, 20, 30, 20, 25]
 var intervals = [5,10,15,20]
 var index = 0
 var timeCounter:float = 0
+
+@export var current_speed:float = speeds[0]
+var previous_speed:float
+
+signal sendSpeedToScore(speed:float)
 signal speed_changed(speed:float)
+
 
 @onready var animation:AnimationPlayer = $AnimationPlayer
 @onready var collisionAnimation = $Collision
+@onready var level = $".."
 
 var start_turning_up = false
 var start_turning_down = false
+
+signal playerHasLost(playerHasLost:bool)
+var playerLost = false
 
 func _ready():
 	speed_changed.emit(current_speed)
@@ -37,9 +45,11 @@ func _physics_process(delta):
 		previous_speed = current_speed
 		
 func _process(delta):
-	if index < len(intervals):
+	sendSpeedToScore.emit(current_speed)
+	if index < len(intervals) and not playerLost:
 		timeCounter += delta
 		if timeCounter >= intervals[index]:
+			index+=1
 			smooth_speed_change(speeds[index])
 func animation_up():
 	if start_turning_up == false:
@@ -64,6 +74,16 @@ func wait(seconds: float):
 
 
 func _on_area_2d_area_entered(car):
-	print("hitted car")
-	speed_changed.emit(0)
+	current_speed = 0
+	previous_speed = 0
+	speed_changed.emit(current_speed)
 	collisionAnimation.play("collision")
+	playerLost = true
+	
+	if level:
+		for item in level.get_children():
+			if item.has_method("stop_car"):
+				item.stop_car()
+				playerHasLost.emit(true)
+		
+	

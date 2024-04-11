@@ -1,6 +1,7 @@
 extends Node2D
 
 var rng = RandomNumberGenerator.new()
+var hasPlayerLost = false
 
 var cars = [
 	preload("res://Enemies/ambulance.tscn"),
@@ -32,12 +33,17 @@ func _ready():
 	
 func _process(delta):
 	timeCounter += delta
-	if timeCounter >= spawnDelay:
+	if timeCounter >= spawnDelay and not hasPlayerLost:
 		spawn_car()
 		timeCounter = 0
+		
 func spawn_car():
 	var car = cars[rng.randi_range(0, len(cars)-1)].instantiate()
 	add_child(car)
 	car.position.x = rng.randi_range(min_posX, max_posX)
 	car.position.y = lanesPositionsY[rng.randi_range(0,5)]
 	car.speed = rng.randi_range(min_speed, max_speed)
+
+
+func _on_player_player_has_lost(playerHasLost):
+	hasPlayerLost = playerHasLost

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://btl5rmr88bgbv"]
+
+[ext_resource type="Script" path="res://score.gd" id="1_imjca"]
+
+[node name="Label" type="Label"]
+offset_left = 421.0
+offset_top = 97.0
+offset_right = 609.0
+offset_bottom = 173.0
+theme_override_colors/font_color = Color(0.713726, 0.556863, 0.952941, 1)
+theme_override_colors/font_shadow_color = Color(0.25098, 0.266667, 0.458824, 1)
+theme_override_colors/font_outline_color = Color(0.705882, 0.741176, 0.831373, 1)
+theme_override_font_sizes/font_size = 35
+text = "999999
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_imjca")

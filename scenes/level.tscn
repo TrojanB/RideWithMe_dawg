@@ -1,15 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://csoxybuwshqhu"]
+[gd_scene load_steps=9 format=3 uid="uid://csoxybuwshqhu"]
 
 [ext_resource type="Script" path="res://scenes/spawnCars.gd" id="1_4y6k3"]
 [ext_resource type="PackedScene" uid="uid://q8v04iswc7b" path="res://scenes/player.tscn" id="2_m8xtx"]
 [ext_resource type="Texture2D" uid="uid://c0vxtaghy7271" path="res://Backgrounds/road.png" id="2_pcuta"]
 [ext_resource type="Script" path="res://scenes/RoadMonig.gd" id="3_gltqv"]
 [ext_resource type="PackedScene" uid="uid://cgok7ckghrf7w" path="res://Enemies/ambulance.tscn" id="4_oaplb"]
-[ext_resource type="PackedScene" uid="uid://btl5rmr88bgbv" path="res://score.tscn" id="6_52uox"]
+[ext_resource type="PackedScene" uid="uid://btl5rmr88bgbv" path="res://scenes/score.tscn" id="6_52uox"]
+[ext_resource type="Script" path="res://scenes/Backgrounds.gd" id="7_j3kr5"]
+[ext_resource type="Texture2D" uid="uid://dhsuhqgl7eass" path="res://Backgrounds/back.png" id="7_yn3ak"]
 
 [node name="level" type="Node2D"]
 position = Vector2(180, 168)
 script = ExtResource("1_4y6k3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(644, 18)
+zoom = Vector2(0.7, 0.7)
 
 [node name="Player" parent="." instance=ExtResource("2_m8xtx")]
 position = Vector2(-99, 318)
@@ -34,6 +40,24 @@ script = ExtResource("3_gltqv")
 position = Vector2(570, 289)
 
 [node name="Label" parent="." instance=ExtResource("6_52uox")]
+offset_left = 310.0
+offset_top = -79.0
+offset_right = 498.0
+offset_bottom = -3.0
+
+[node name="Clouds2" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(3857, -189)
+scale = Vector2(12, 3)
+texture = ExtResource("7_yn3ak")
+script = ExtResource("7_j3kr5")
+
+[node name="Clouds1" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(1167, -191)
+scale = Vector2(12, 3)
+texture = ExtResource("7_yn3ak")
+script = ExtResource("7_j3kr5")
 
 [connection signal="playerHasLost" from="Player" to="." method="_on_player_player_has_lost"]
 [connection signal="sendSpeedToScore" from="Player" to="Label" method="_on_player_send_speed_to_score"]

@@ -25,6 +25,7 @@ var playerLost = false
 
 func _ready():
 	speed_changed.emit(current_speed)
+	$Sprite2D.frame = 0
 
 func _physics_process(delta):
 	if Input.get_action_strength("up"):  #go up

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn3558f12uj13"]
+
+[ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="1_27p3k"]
+[ext_resource type="Texture2D" uid="uid://dhsuhqgl7eass" path="res://Backgrounds/back.png" id="2_kljlg"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(580.5, 330.5)
+scale = Vector2(4.51172, 2.72917)
+texture = ExtResource("1_27p3k")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+z_index = -1
+position = Vector2(579, 233)
+scale = Vector2(5.14732, 2.8)
+texture = ExtResource("2_kljlg")

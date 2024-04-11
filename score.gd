@@ -6,5 +6,5 @@ func _ready():
 	text = "0"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_player_send_speed_to_score(speed):
-		score+=speed
+		score+=speed/10
 		text = str(score)

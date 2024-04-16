@@ -20,6 +20,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [24]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_dj334"]
 resource_name = "go_down"
@@ -35,7 +47,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [23, 22, 21, 20]
+"values": [1, 2, 3, 4]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -47,7 +59,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.5708, 1.0472]
+"values": [1.5708, 2.0944]
 }
 
 [sub_resource type="Animation" id="Animation_gd4d6"]
@@ -64,7 +76,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [25, 26, 27, 28]
+"values": [47, 46, 45, 44]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -76,7 +88,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.01, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.5708, 2.0944]
+"values": [1.5708, 1.13446]
 }
 
 [sub_resource type="Animation" id="Animation_64o0p"]
@@ -126,7 +138,7 @@ script = ExtResource("2_qgepg")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(3, 7)
+position = Vector2(-2, 6)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_cvvsn")
 

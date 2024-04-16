@@ -35,6 +35,9 @@ func _process(delta):
 	timeCounter += delta
 	if timeCounter >= spawnDelay and not hasPlayerLost:
 		spawn_car()
+		spawn_car()
+		spawn_car()
+		spawn_car()
 		timeCounter = 0
 		
 func spawn_car():

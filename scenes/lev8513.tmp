@@ -100,7 +100,6 @@ text = "TIME: 999999"
 script = ExtResource("10_wxlwk")
 
 [connection signal="playerHasLost" from="Player" to="." method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="UI/Time" method="_on_player_player_has_lost"]
 [connection signal="sendSpeedToScore" from="Player" to="UI/Score" method="_on_player_send_speed_to_score"]
 [connection signal="speed_changed" from="Player" to="Road1" method="_on_player_speed_changed"]
 [connection signal="speed_changed" from="Player" to="Road2" method="_on_player_speed_changed"]

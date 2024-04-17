@@ -4,16 +4,21 @@ var speed:float = 5
 var carSprite
 var carFrame = 5
 
-
 var area2D
 var animation
 
 var goUp = false
 var goDown = false
 var index:int
+var destinationY:int = 0
 
 var lanesPositionsY = [  #od gory do dolu
 	72, 144, 216, 288, 360, 432
+]
+var changeLaneInterval = 72
+
+var zIndexes = [
+	2,3,4,5,6,7
 ]
 
 func _ready():
@@ -22,11 +27,11 @@ func _ready():
 	frame = 0
 	area2D = $Area2D
 	animation = $AnimationPlayer
-	
+
 func _physics_process(delta):
 	position += Vector2(-speed,0)
-	if goUp: go_up(lanesPositionsY[index])
-	elif goDown: go_down(lanesPositionsY[index])
+	if goUp: go_up(destinationY)
+	elif goDown: go_down(destinationY)
 
 func stop_car():
 	speed = 0
@@ -35,38 +40,42 @@ func is_car():
 	true
 
 func _on_area_2d_area_entered(area):
-	print("CAR HITTED")
-	var posY = position.y
-	index = lanesPositionsY.find(posY,0)
-	print(posY)
-	print(index)
-	if index != null:
-		if index == len(lanesPositionsY) - 1:
-			true
-		elif index == 0:
-			true
+	var posY = global_position.y
+	if global_position.x > area.global_position.x:
+		if global_position.y < 300: #w przypadku gdy samochod dotyka gornej granicy
+			destinationY = posY+changeLaneInterval
+			animation.play("go_down")
+			goDown = true
+		elif global_position.y > 600:#w przypadku gdy samochod dotyka dolnej granicy
+			destinationY = posY-changeLaneInterval
+			animation.play("go_up")
+			goUp = true
 		else:
 			var rn = randi_range(1,2) # 1 - go up, 2 - go down
 			if rn==1:
-				index+=1
+				destinationY = posY-changeLaneInterval
+				animation.play("go_up")
 				goUp = true
 			elif rn==2:
-				index-=1
+				destinationY = posY+changeLaneInterval
+				animation.play("go_down")
 				goDown = true
 
 func go_up(destinationY):
-	if position.y >= destinationY:
-		if not animation.current_animation == "go_up":
-			animation.play("go_up")
+	if global_position.y > destinationY:
 		position+=Vector2(0,-5)
-	else: goUp = false
+	else:
+		goUp = false
+		goDown = false 
+		animation.play("RESET")
 	
 func go_down(destinationY):
-	if position.y <= destinationY:
-		if not animation.current_animation == "go_down":
-			animation.play("go_down")
-		position+=Vector2(0,1)
-	else: goDown = false
-	
+	if global_position.y < destinationY:
+		position+=Vector2(0,5)
+	else: 
+		goUp = false
+		goDown = false 
+		animation.play("RESET")
+
 func destroy_car():
 	$".".queue_free()

@@ -47,18 +47,20 @@ func _physics_process(delta):
 		
 func _process(delta):
 	sendSpeedToScore.emit(current_speed)
+	print(global_position.y)
 	if index < len(intervals) and not playerLost:
 		timeCounter += delta
 		if timeCounter >= intervals[index]:
 			index+=1
 			smooth_speed_change(speeds[index])
+
 func animation_up():
 	if start_turning_up == false:
-		print("yoo")
 		start_turning_up = true
 		start_turning_down = false
 		animation.play("go_up")
 		
+
 func animation_down():
 	if start_turning_down == false:
 		start_turning_down = true

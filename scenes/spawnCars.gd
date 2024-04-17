@@ -4,7 +4,6 @@ var rng = RandomNumberGenerator.new()
 var hasPlayerLost = false
 
 var cars = [
-	preload("res://Enemies/ambulance.tscn"),
 	preload("res://Enemies/black_minivan.tscn"),
 	preload("res://Enemies/blue_wagon.tscn"),
 	preload("res://Enemies/green_minivan.tscn"),

@@ -17,7 +17,6 @@ func _process(delta:float):
 
 func _on_player_speed_changed(speed):
 	roadSpeed = speed
-	print(roadSpeed)
 
 
 func _on_player_player_has_lost(playerHasLost):

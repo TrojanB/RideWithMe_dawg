@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="2"]
+[gd_scene load_steps=10 format=3 uid="uid://cv4403e80efw1"]
 
 [ext_resource type="Script" path="res://scenes/spawnCars.gd" id="1_4y6k3"]
 [ext_resource type="PackedScene" uid="uid://q8v04iswc7b" path="res://scenes/player.tscn" id="2_m8xtx"]
@@ -43,7 +43,6 @@ offset_left = 310.0
 offset_top = -79.0
 offset_right = 498.0
 offset_bottom = -3.0
-
 
 [node name="Clouds2" type="Sprite2D" parent="."]
 z_index = -2

@@ -17,9 +17,8 @@ var lanesPositionsY = [  #od gory do dolu
 ]
 var changeLaneInterval = 72
 
-var zIndexes = [
-	2,3,4,5,6,7
-]
+var player
+var destroyCarVector
 
 func _ready():
 	scale.x = 1.9
@@ -27,6 +26,7 @@ func _ready():
 	frame = 0
 	area2D = $Area2D
 	animation = $AnimationPlayer
+	player = $"./Player"
 
 func _physics_process(delta):
 	position += Vector2(-speed,0)

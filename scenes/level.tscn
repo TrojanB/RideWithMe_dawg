@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cv4403e80efw1"]
+[gd_scene load_steps=11 format=3 uid="uid://cv4403e80efw1"]
 
 [ext_resource type="Script" path="res://scenes/spawnCars.gd" id="1_4y6k3"]
 [ext_resource type="PackedScene" uid="uid://q8v04iswc7b" path="res://scenes/player.tscn" id="2_m8xtx"]
 [ext_resource type="Texture2D" uid="uid://c0vxtaghy7271" path="res://Backgrounds/road.png" id="2_pcuta"]
 [ext_resource type="Script" path="res://scenes/RoadMonig.gd" id="3_gltqv"]
+[ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="5_01iqc"]
 [ext_resource type="PackedScene" uid="uid://btl5rmr88bgbv" path="res://scenes/score.tscn" id="6_52uox"]
 [ext_resource type="Script" path="res://scenes/Backgrounds.gd" id="7_j3kr5"]
 [ext_resource type="Texture2D" uid="uid://dhsuhqgl7eass" path="res://Backgrounds/back.png" id="7_yn3ak"]
@@ -38,11 +39,32 @@ skew = -0.174533
 texture = ExtResource("2_pcuta")
 script = ExtResource("3_gltqv")
 
-[node name="Label" parent="." instance=ExtResource("6_52uox")]
-offset_left = 310.0
-offset_top = -79.0
-offset_right = 498.0
-offset_bottom = -3.0
+[node name="city" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(700, -40)
+scale = Vector2(7, 4)
+texture = ExtResource("5_01iqc")
+script = ExtResource("7_j3kr5")
+backgroundSpeed = 5.7
+spriteAmount = 6
+
+[node name="city2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1700, -40)
+scale = Vector2(7, 4)
+texture = ExtResource("5_01iqc")
+script = ExtResource("7_j3kr5")
+backgroundSpeed = 5.7
+spriteAmount = 6
+
+[node name="city3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(3000, -40)
+scale = Vector2(7, 4)
+texture = ExtResource("5_01iqc")
+script = ExtResource("7_j3kr5")
+backgroundSpeed = 5.7
+spriteAmount = 6
 
 [node name="Clouds2" type="Sprite2D" parent="."]
 z_index = -2
@@ -50,6 +72,7 @@ position = Vector2(3857, -189)
 scale = Vector2(12, 3)
 texture = ExtResource("7_yn3ak")
 script = ExtResource("7_j3kr5")
+backgroundSpeed = 2.0
 
 [node name="Clouds1" type="Sprite2D" parent="."]
 z_index = -2
@@ -57,6 +80,7 @@ position = Vector2(1167, -191)
 scale = Vector2(12, 3)
 texture = ExtResource("7_yn3ak")
 script = ExtResource("7_j3kr5")
+backgroundSpeed = 2.0
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

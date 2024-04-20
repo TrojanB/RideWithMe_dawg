@@ -16,81 +16,21 @@ y_sort_enabled = true
 position = Vector2(180, 168)
 script = ExtResource("1_4y6k3")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(644, 18)
-zoom = Vector2(0.7, 0.7)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("2_m8xtx")]
-position = Vector2(-99, 318)
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
 
-[node name="Road1" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(1885, 103)
-scale = Vector2(1.19127, 1.82638)
-skew = -0.174533
-texture = ExtResource("2_pcuta")
-script = ExtResource("3_gltqv")
+[node name="UI" type="Control" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
 
-[node name="Road2" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(6125, 103)
-scale = Vector2(1.19127, 1.82638)
-skew = -0.174533
-texture = ExtResource("2_pcuta")
-script = ExtResource("3_gltqv")
-
-[node name="city" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(700, -40)
-scale = Vector2(7, 4)
-texture = ExtResource("5_01iqc")
-script = ExtResource("7_j3kr5")
-backgroundSpeed = 5.7
-spriteAmount = 6
-
-[node name="city2" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(1700, -40)
-scale = Vector2(7, 4)
-texture = ExtResource("5_01iqc")
-script = ExtResource("7_j3kr5")
-backgroundSpeed = 5.7
-spriteAmount = 6
-
-[node name="city3" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(3000, -40)
-scale = Vector2(7, 4)
-texture = ExtResource("5_01iqc")
-script = ExtResource("7_j3kr5")
-backgroundSpeed = 5.7
-spriteAmount = 6
-
-[node name="Clouds2" type="Sprite2D" parent="."]
-z_index = -2
-position = Vector2(3857, -189)
-scale = Vector2(12, 3)
-texture = ExtResource("7_yn3ak")
-script = ExtResource("7_j3kr5")
-backgroundSpeed = 2.0
-
-[node name="Clouds1" type="Sprite2D" parent="."]
-z_index = -2
-position = Vector2(1167, -191)
-scale = Vector2(12, 3)
-texture = ExtResource("7_yn3ak")
-script = ExtResource("7_j3kr5")
-backgroundSpeed = 2.0
-
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -177.0
-offset_top = -445.0
-offset_right = 1466.0
-offset_bottom = 480.0
-
-[node name="Score" parent="UI" instance=ExtResource("6_52uox")]
+[node name="Score" parent="CanvasLayer/HBoxContainer/UI" instance=ExtResource("6_52uox")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -108,7 +48,7 @@ theme_override_font_sizes/font_size = 75
 text = "SCORE: 999999
 "
 
-[node name="Time" parent="UI" instance=ExtResource("6_52uox")]
+[node name="Time" parent="CanvasLayer/HBoxContainer/UI" instance=ExtResource("6_52uox")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -126,8 +66,79 @@ theme_override_font_sizes/font_size = 50
 text = "TIME: 999999"
 script = ExtResource("10_wxlwk")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 5)
+zoom = Vector2(0.7, 0.7)
+
+[node name="Player" parent="." instance=ExtResource("2_m8xtx")]
+position = Vector2(-700, 318)
+
+[node name="Road1" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(760, 100)
+scale = Vector2(1.19127, 1.82638)
+skew = -0.174533
+texture = ExtResource("2_pcuta")
+script = ExtResource("3_gltqv")
+
+[node name="Road2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(5000, 100)
+scale = Vector2(1.19127, 1.82638)
+skew = -0.174533
+texture = ExtResource("2_pcuta")
+script = ExtResource("3_gltqv")
+
+[node name="city" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -40)
+scale = Vector2(7, 4)
+texture = ExtResource("5_01iqc")
+script = ExtResource("7_j3kr5")
+backgroundSpeed = 130.0
+spriteAmount = 6
+
+[node name="city2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1700, -40)
+scale = Vector2(7, 4)
+texture = ExtResource("5_01iqc")
+script = ExtResource("7_j3kr5")
+backgroundSpeed = 130.0
+spriteAmount = 6
+
+[node name="city3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(3000, -40)
+scale = Vector2(7, 4)
+texture = ExtResource("5_01iqc")
+script = ExtResource("7_j3kr5")
+backgroundSpeed = 130.0
+spriteAmount = 6
+
+[node name="Clouds2" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(2200, -200)
+scale = Vector2(9, 3)
+texture = ExtResource("7_yn3ak")
+script = ExtResource("7_j3kr5")
+backgroundSpeed = 70.0
+
+[node name="Clouds1" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(185, -200)
+scale = Vector2(9, 3)
+texture = ExtResource("7_yn3ak")
+script = ExtResource("7_j3kr5")
+backgroundSpeed = 70.0
+
 [connection signal="playerHasLost" from="Player" to="." method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="UI/Time" method="_on_player_player_has_lost"]
-[connection signal="sendSpeedToScore" from="Player" to="UI/Score" method="_on_player_send_speed_to_score"]
+[connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Score" method="_on_player_player_has_lost"]
+[connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Time" method="_on_player_player_has_lost"]
+[connection signal="playerHasLost" from="Player" to="city" method="_on_player_player_has_lost"]
+[connection signal="playerHasLost" from="Player" to="city2" method="_on_player_player_has_lost"]
+[connection signal="playerHasLost" from="Player" to="city3" method="_on_player_player_has_lost"]
+[connection signal="sendSpeedToScore" from="Player" to="CanvasLayer/HBoxContainer/UI/Score" method="_on_player_send_speed_to_score"]
+[connection signal="speed_changed" from="Player" to="." method="_on_player_speed_changed"]
 [connection signal="speed_changed" from="Player" to="Road1" method="_on_player_speed_changed"]
 [connection signal="speed_changed" from="Player" to="Road2" method="_on_player_speed_changed"]

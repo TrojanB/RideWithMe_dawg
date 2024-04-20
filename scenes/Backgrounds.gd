@@ -1,7 +1,7 @@
 extends Sprite2D
 
 var backgroundSize:float
-@export var backgroundSpeed:float = 10
+@export var backgroundSpeed:float
 @export var spriteAmount = 2
 var isCitySprite = false
 
@@ -10,10 +10,15 @@ func _ready():
 	if name == "city" or "city2" or "city3":
 		isCitySprite = true
 	
+#Przesuwa tla, kiedy jeden background przekroczy granice wraca na poczatek
 func _process(delta:float):
-	position.x -= backgroundSpeed
-	if position.x <= -backgroundSize + 255 :
+	position.x -= backgroundSpeed * delta
+	if position.x < -backgroundSize:
 		if isCitySprite:
 			position.x += spriteAmount * backgroundSize
 		else:
-			position.x += spriteAmount * backgroundSize
+			position.x += backgroundSize - 100
+
+func _on_player_player_has_lost(playerHasLost):
+	if isCitySprite:
+		backgroundSpeed = 0

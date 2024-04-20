@@ -10,7 +10,7 @@ func _ready():
 	roadSize = texture.get_size().x * scale.x
 	
 func _process(delta:float):
-	position.x -= roadSpeed
+	position.x -= roadSpeed * delta
 	if position.x < -roadSize and not hasPlayerLost:
 		position.x += 2 * roadSize
 

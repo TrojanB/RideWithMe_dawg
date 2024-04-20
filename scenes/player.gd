@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-var speeds = [10, 20, 30, 20, 25]
-var intervals = [5,10,15,20]
+var speeds = [900, 1800, 2700, 3600, 4500]
+var intervals = [20,40,80,120]
 var index = 0
 var timeCounter:float = 0
 
@@ -19,6 +19,7 @@ signal speed_changed(speed:float)
 
 var start_turning_up = false
 var start_turning_down = false
+var turningForce = 350
 
 signal playerHasLost(playerHasLost:bool)
 var playerLost = false
@@ -30,11 +31,11 @@ func _ready():
 func _physics_process(delta):
 	if Input.get_action_strength("up"):  #go up
 		animation_up()
-		position -= Vector2(0,5)
+		position -= Vector2(0,turningForce) * delta
 		
 	elif Input.get_action_strength("down") :#go down
 		animation_down()
-		position += Vector2(0,5) 
+		position += Vector2(0,turningForce) * delta
 		
 	else:                                  #go straight
 		animation.play("idle")
@@ -46,13 +47,12 @@ func _physics_process(delta):
 		previous_speed = current_speed
 		
 func _process(delta):
-	sendSpeedToScore.emit(current_speed)
-	print(global_position.y)
+	sendSpeedToScore.emit(round(current_speed/1000))
 	if index < len(intervals) and not playerLost:
 		timeCounter += delta
 		if timeCounter >= intervals[index]:
 			index+=1
-			smooth_speed_change(speeds[index])
+			smooth_speed_change(speeds[index], delta)
 
 func animation_up():
 	if start_turning_up == false:
@@ -67,9 +67,9 @@ func animation_down():
 		start_turning_up = false
 		animation.play("go_down")
 	
-func smooth_speed_change(speed:float):
+func smooth_speed_change(speed:float,delta):
 	while current_speed <= speed:
-		wait(1)
+		wait(delta)
 		current_speed+=1
 		
 func wait(seconds: float):

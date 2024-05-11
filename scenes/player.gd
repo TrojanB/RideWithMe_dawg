@@ -83,6 +83,8 @@ func _on_area_2d_area_entered(car):
 	collisionAnimation.play("collision")
 	playerLost = true
 	
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+	
 	if level:
 		for item in level.get_children():
 			if item.has_method("stop_car"):

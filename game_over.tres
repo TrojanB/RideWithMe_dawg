@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c6j08vr2snnrq"]
+
+[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="1_237rr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aehf2"]
+bg_color = Color(0.639352, 0.278174, 0.275537, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.223529, 0.12549, 0.0235294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.690196, 0.192157, 0.32549, 0.6)
+shadow_size = 30
+anti_aliasing_size = 4.48
+
+[resource]
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_237rr")
+Button/styles/normal = SubResource("StyleBoxFlat_aehf2")

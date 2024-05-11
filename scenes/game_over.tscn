@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://642erslk4ylp"]
+
+[ext_resource type="FontFile" uid="uid://do8s0h3hbds6y" path="res://scenes/Franchise.ttf" id="1_osgrj"]
+[ext_resource type="Theme" uid="uid://c6j08vr2snnrq" path="res://game_over.tres" id="2_bqptj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0h8l5"]
+bg_color = Color(0.0901961, 0.164706, 0.192157, 1)
+border_color = Color(0.960784, 0.709804, 0.878431, 1)
+border_blend = true
+expand_margin_top = 300.0
+shadow_color = Color(0.466667, 0.0901961, 0.156863, 0.6)
+shadow_size = 45
+anti_aliasing_size = 5.265
+
+[sub_resource type="Theme" id="Theme_rvkas"]
+Label/styles/normal = SubResource("StyleBoxFlat_0h8l5")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.512
+anchor_top = 0.059
+anchor_right = 0.512
+anchor_bottom = 0.059
+offset_left = -911.824
+offset_top = -0.232002
+offset_right = 911.176
+offset_bottom = 775.768
+theme = SubResource("Theme_rvkas")
+theme_override_colors/font_color = Color(0.890196, 0.364706, 0.376471, 1)
+theme_override_colors/font_shadow_color = Color(0.160784, 0.00784314, 0.129412, 1)
+theme_override_colors/font_outline_color = Color(0.160784, 0.00784314, 0.129412, 1)
+theme_override_constants/outline_size = 30
+theme_override_constants/shadow_outline_size = 50
+theme_override_fonts/font = ExtResource("1_osgrj")
+theme_override_font_sizes/font_size = 244
+text = "GAME OVER
+"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="."]
+z_index = 2
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.309
+anchor_top = 0.573
+anchor_right = 0.309
+anchor_bottom = 0.573
+offset_left = -204.968
+offset_top = -0.304016
+offset_right = 204.032
+offset_bottom = 135.696
+theme = ExtResource("2_bqptj")
+text = "PLAY AGAIN
+"
+
+[node name="MainMenuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.746
+anchor_top = 0.562
+anchor_right = 0.746
+anchor_bottom = 0.562
+offset_left = -197.392
+offset_top = 7.82397
+offset_right = 197.608
+offset_bottom = 141.824
+theme = ExtResource("2_bqptj")
+text = "MAIN MENU
+"

@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bt47ky8s6sja5"]
+
+[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="1_4yu3o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogkpy"]
+bg_color = Color(0.72549, 0.258824, 0.462745, 1)
+skew = Vector2(0.5, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.505882, 0.12549, 0.360784, 1)
+
+[resource]
+Button/fonts/font = ExtResource("1_4yu3o")
+Button/styles/normal = SubResource("StyleBoxFlat_ogkpy")

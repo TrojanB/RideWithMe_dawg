@@ -1,15 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://cv4403e80efw1"]
+[gd_scene load_steps=17 format=3 uid="uid://cv4403e80efw1"]
 
 [ext_resource type="Script" path="res://scenes/spawnCars.gd" id="1_4y6k3"]
 [ext_resource type="PackedScene" uid="uid://q8v04iswc7b" path="res://scenes/player.tscn" id="2_m8xtx"]
+[ext_resource type="Script" path="res://scenes/UI.gd" id="2_o22ar"]
 [ext_resource type="Texture2D" uid="uid://c0vxtaghy7271" path="res://Backgrounds/road.png" id="2_pcuta"]
 [ext_resource type="Script" path="res://scenes/RoadMonig.gd" id="3_gltqv"]
 [ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="5_01iqc"]
+[ext_resource type="Texture2D" uid="uid://cy1lne4x00apm" path="res://SUPERCAR/arrowFinaly.png" id="5_uv5au"]
 [ext_resource type="PackedScene" uid="uid://btl5rmr88bgbv" path="res://scenes/score.tscn" id="6_52uox"]
 [ext_resource type="Script" path="res://scenes/Backgrounds.gd" id="7_j3kr5"]
 [ext_resource type="Texture2D" uid="uid://dhsuhqgl7eass" path="res://Backgrounds/back.png" id="7_yn3ak"]
 [ext_resource type="FontFile" uid="uid://m15idm5dj0pi" path="res://NEONLEDLight.otf" id="9_kdhi2"]
 [ext_resource type="Script" path="res://scenes/time.gd" id="10_wxlwk"]
+[ext_resource type="PackedScene" uid="uid://642erslk4ylp" path="res://scenes/game_over.tscn" id="11_pyprd"]
+[ext_resource type="PackedScene" uid="uid://df6faxuclij8m" path="res://loading.tscn" id="12_3qp1a"]
+[ext_resource type="AudioStream" uid="uid://d3ur3vfmj8rcd" path="res://music/videogame-death-sound-43894.mp3" id="15_g0cl5"]
+[ext_resource type="Script" path="res://scenes/GameOverSound.gd" id="16_gx0ym"]
 
 [node name="level" type="Node2D"]
 y_sort_enabled = true
@@ -29,6 +35,7 @@ grow_horizontal = 2
 
 [node name="UI" type="Control" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
+script = ExtResource("2_o22ar")
 
 [node name="Score" parent="CanvasLayer/HBoxContainer/UI" instance=ExtResource("6_52uox")]
 layout_mode = 1
@@ -66,12 +73,42 @@ theme_override_font_sizes/font_size = 50
 text = "TIME: 999999"
 script = ExtResource("10_wxlwk")
 
+[node name="Up" type="TouchScreenButton" parent="CanvasLayer/HBoxContainer/UI"]
+modulate = Color(1, 1, 1, 0.823529)
+z_index = 10
+position = Vector2(372, 86)
+scale = Vector2(0.33012, 0.293399)
+texture_normal = ExtResource("5_uv5au")
+action = "up"
+
+[node name="Down" type="TouchScreenButton" parent="CanvasLayer/HBoxContainer/UI"]
+self_modulate = Color(1, 1, 1, 0.823529)
+z_index = 10
+position = Vector2(-328, 208)
+rotation = 3.14159
+scale = Vector2(0.33012, 0.293399)
+texture_normal = ExtResource("5_uv5au")
+action = "down"
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("11_pyprd")]
+visible = false
+z_index = 10
+anchors_preset = -1
+anchor_left = -0.542
+anchor_top = -0.455
+anchor_right = 0.871
+offset_left = 530.384
+offset_top = 262.84
+offset_right = -88.3921
+offset_bottom = -118.0
+scale = Vector2(1.25, 1.25)
+
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(157, 5)
 zoom = Vector2(0.7, 0.7)
 
 [node name="Player" parent="." instance=ExtResource("2_m8xtx")]
-position = Vector2(-700, 318)
+position = Vector2(-552, 318)
 
 [node name="Road1" type="Sprite2D" parent="."]
 z_index = -1
@@ -132,12 +169,30 @@ texture = ExtResource("7_yn3ak")
 script = ExtResource("7_j3kr5")
 backgroundSpeed = 70.0
 
+[node name="LoadingShit" parent="." instance=ExtResource("12_3qp1a")]
+position = Vector2(160, 37)
+scale = Vector2(1.5, 1.5)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-552, 318)
+scale = Vector2(1.9, 1.9)
+stream = ExtResource("15_g0cl5")
+volume_db = 3.0
+pitch_scale = 2.5
+script = ExtResource("16_gx0ym")
+
+[connection signal="ready" from="." to="LoadingShit" method="_on_level_ready"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/UI/Up" to="CanvasLayer/HBoxContainer/UI" method="_on_up_pressed"]
+[connection signal="released" from="CanvasLayer/HBoxContainer/UI/Up" to="CanvasLayer/HBoxContainer/UI" method="_on_up_released"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/UI/Down" to="CanvasLayer/HBoxContainer/UI" method="_on_down_pressed"]
+[connection signal="released" from="CanvasLayer/HBoxContainer/UI/Down" to="CanvasLayer/HBoxContainer/UI" method="_on_down_released"]
 [connection signal="playerHasLost" from="Player" to="." method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Score" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Time" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="city" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="city2" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="city3" method="_on_player_player_has_lost"]
+[connection signal="playerHasLost" from="Player" to="AudioStreamPlayer2D" method="_on_player_player_has_lost"]
 [connection signal="sendSpeedToScore" from="Player" to="CanvasLayer/HBoxContainer/UI/Score" method="_on_player_send_speed_to_score"]
 [connection signal="speed_changed" from="Player" to="." method="_on_player_speed_changed"]
 [connection signal="speed_changed" from="Player" to="Road1" method="_on_player_speed_changed"]

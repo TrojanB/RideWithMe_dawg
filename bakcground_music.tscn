@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6go32acvl7yl"]
+
+[ext_resource type="AudioStream" uid="uid://b68mvjc8p58p2" path="res://music/back-to-the-80s-163722.mp3" id="1_1t1ya"]
+
+[node name="BakcgroundMusic" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_1t1ya")
+autoplay = true

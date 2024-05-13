@@ -2,6 +2,9 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 var hasPlayerLost = false
+@onready var gameOverScreen = $CanvasLayer/Control
+@onready var transitionPlayer = $Sprite2D/AnimationPlayer
+var transition = "PixelOut"
 
 var cars = [
 	preload("res://Enemies/black_minivan.tscn"),
@@ -22,7 +25,7 @@ var lanesPositionsY = [  #od gory do dolu
 	72, 144, 216, 288, 360, 432
 ]
 
-var spawnDelays = [5,4,3,2.5, 1.5, 1, 0.5]
+var spawnDelays = [5,4,3,2.5, 1.5, 1.25, 1.2]
 var index = 0
 var timeCounter = 0
 
@@ -49,9 +52,11 @@ func spawn_car():
 
 func _on_player_player_has_lost(playerHasLost):
 	hasPlayerLost = playerHasLost
+	gameOverScreen.visible = true
 
 
 func _on_player_speed_changed(speed):
 	if index+1 <= len(spawnDelays) and not hasPlayerLost:
 		index+=1
 		print(spawnDelays[index])
+

@@ -12,7 +12,6 @@ var previous_speed:float
 signal sendSpeedToScore(speed:float)
 signal speed_changed(speed:float)
 
-
 @onready var animation:AnimationPlayer = $AnimationPlayer
 @onready var collisionAnimation = $Collision
 @onready var level = $".."
@@ -82,8 +81,6 @@ func _on_area_2d_area_entered(car):
 	speed_changed.emit(current_speed)
 	collisionAnimation.play("collision")
 	playerLost = true
-	
-	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	
 	if level:
 		for item in level.get_children():

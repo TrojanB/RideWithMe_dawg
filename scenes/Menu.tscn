@@ -1,0 +1,194 @@
+[gd_scene load_steps=12 format=3 uid="uid://cus8fcubhxhco"]
+
+[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="1_dknlt"]
+[ext_resource type="Script" path="res://scenes/Menu.gd" id="1_vb6i4"]
+[ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="2_5co7e"]
+[ext_resource type="Texture2D" uid="uid://cgebisvfxsl0t" path="res://Backgrounds/palms.png" id="3_0yd1u"]
+[ext_resource type="Texture2D" uid="uid://bj76w33q01sva" path="res://Backgrounds/sun.png" id="4_wwsyq"]
+[ext_resource type="Theme" uid="uid://bt47ky8s6sja5" path="res://Backgrounds/buttonTheme.tres" id="5_cohfj"]
+[ext_resource type="Script" path="res://PlayButton.gd" id="6_ynor3"]
+[ext_resource type="PackedScene" uid="uid://dhf7xc286bime" path="res://Backgrounds/parallax_background.tscn" id="7_ea8tl"]
+
+[sub_resource type="Animation" id="Animation_6qnn4"]
+resource_name = "glow"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Label2:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.65098, 0.141176, 1), Color(1, 0.952941, 0.901961, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HighScore:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.945098, 0.6, 0, 1), Color(1, 0.952941, 0.901961, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x5y38"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Label2:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.65098, 0.141176, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HighScore:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.945098, 0.6, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_icpoa"]
+_data = {
+"RESET": SubResource("Animation_x5y38"),
+"glow": SubResource("Animation_6qnn4")
+}
+
+[node name="Control" type="Control"]
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -782.0
+offset_right = 10.0
+offset_bottom = -782.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_vb6i4")
+
+[node name="Label" type="Label" parent="."]
+z_index = 10
+texture_filter = 1
+layout_mode = 0
+offset_left = 14.0
+offset_top = 430.0
+offset_right = 380.0
+offset_bottom = 491.0
+theme_override_colors/font_color = Color(0.945098, 0.6, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.894118, 0.760784, 0.203922, 1)
+theme_override_fonts/font = ExtResource("1_dknlt")
+theme_override_font_sizes/font_size = 32
+text = "Ride With Me
+"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+z_index = 10
+texture_filter = 1
+layout_mode = 0
+offset_left = 23.5
+offset_top = 604.5
+offset_right = 287.5
+offset_bottom = 655.5
+theme_override_colors/font_color = Color(1, 0.65098, 0.141176, 1)
+theme_override_colors/font_shadow_color = Color(0.894118, 0.760784, 0.203922, 1)
+theme_override_fonts/font = ExtResource("1_dknlt")
+theme_override_font_sizes/font_size = 24
+text = "HIGH SCORE:
+
+"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
+root_node = NodePath("../../Label")
+libraries = {
+"": SubResource("AnimationLibrary_icpoa")
+}
+autoplay = "glow"
+
+[node name="HighScore" type="Label" parent="."]
+z_index = 10
+texture_filter = 1
+layout_mode = 0
+offset_left = 21.0
+offset_top = 646.5
+offset_right = 285.0
+offset_bottom = 697.5
+theme_override_colors/font_color = Color(0.945098, 0.6, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.894118, 0.760784, 0.203922, 1)
+theme_override_fonts/font = ExtResource("1_dknlt")
+theme_override_font_sizes/font_size = 24
+text = "0
+
+"
+horizontal_alignment = 1
+
+[node name="City" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(-40.118, 531.5)
+scale = Vector2(2.75977, 1.46667)
+texture = ExtResource("2_5co7e")
+centered = false
+
+[node name="Palms" type="Sprite2D" parent="."]
+z_index = 4
+position = Vector2(482.663, 726.5)
+scale = Vector2(3.19838, 1.89948)
+texture = ExtResource("3_0yd1u")
+
+[node name="Sun" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(-352.5, 592)
+scale = Vector2(4.39941, 3.55599)
+texture = ExtResource("4_wwsyq")
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -287.118
+offset_top = 164.0
+offset_right = -13.118
+offset_bottom = 240.0
+theme = ExtResource("5_cohfj")
+theme_override_fonts/font = ExtResource("1_dknlt")
+theme_override_font_sizes/font_size = 30
+text = "PLAY
+"
+
+[node name="PlayButton2" type="Button" parent="."]
+z_index = 3
+layout_mode = 0
+offset_left = 13.882
+offset_top = 517.5
+offset_right = 287.882
+offset_bottom = 593.5
+theme = ExtResource("5_cohfj")
+theme_override_fonts/font = ExtResource("1_dknlt")
+theme_override_font_sizes/font_size = 32
+text = "PLAY
+"
+script = ExtResource("6_ynor3")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("7_ea8tl")]
+
+[connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="PlayButton2" to="PlayButton2" method="_on_pressed"]

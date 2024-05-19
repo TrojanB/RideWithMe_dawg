@@ -28,11 +28,11 @@ func _ready():
 	$Sprite2D.frame = 0
 
 func _physics_process(delta):
-	if Input.get_action_strength("up"):  #go up
+	if Input.get_action_strength("up") and position.y > 96:  #go up
 		animation_up()
 		position -= Vector2(0,turningForce) * delta
 		
-	elif Input.get_action_strength("down") :#go down
+	elif Input.get_action_strength("down") and position.y < 452:#go down
 		animation_down()
 		position += Vector2(0,turningForce) * delta
 		
@@ -44,8 +44,8 @@ func _physics_process(delta):
 	if current_speed != previous_speed: #wysyla predkosc do Sprite'ow drogi by ta "ruszala sie" w wyslanej predkosci lmao
 		speed_changed.emit(current_speed)
 		previous_speed = current_speed
-		
 func _process(delta):
+	print(str(position.y))
 	sendSpeedToScore.emit(round(current_speed/1000))
 	if index < len(intervals) and not playerLost:
 		timeCounter += delta

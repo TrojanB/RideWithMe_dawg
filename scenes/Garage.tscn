@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8dvcjuyxd6pq"]
+
+[ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="1_0p0yk"]
+[ext_resource type="Texture2D" uid="uid://bj76w33q01sva" path="res://Backgrounds/sun.png" id="3_pdvxu"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(536, -377.5)
+scale = Vector2(9.49219, 9.62917)
+texture = ExtResource("1_0p0yk")
+
+[node name="CenterContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sun" type="Sprite2D" parent="CenterContainer"]
+z_index = 1
+scale = Vector2(20, 20)
+texture = ExtResource("3_pdvxu")

@@ -1,0 +1,360 @@
+[gd_scene load_steps=31 format=3 uid="uid://cxw5cllo4rcae"]
+
+[ext_resource type="Texture2D" uid="uid://c3vgcfn1kuxgc" path="res://PlayerCars/LUXURY_GAME/Black_LUXURY_CLEAN_All_000-sheet.png" id="1_8atol"]
+[ext_resource type="Texture2D" uid="uid://djoa44w63fk06" path="res://Textures/heart.png" id="1_8817i"]
+[ext_resource type="Texture2D" uid="uid://bj76w33q01sva" path="res://Backgrounds/sun.png" id="1_yx3t4"]
+[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="3_kmg6p"]
+[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://Fonts/PressStart2P-Regular.ttf" id="3_yc2oo"]
+[ext_resource type="Texture2D" uid="uid://b88wpt6xejoua" path="res://Textures/coin1_16x16.png" id="4_nqp76"]
+
+[sub_resource type="Animation" id="Animation_2hyma"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CarSrpite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lrdt5"]
+resource_name = "Rotating"
+length = 4.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CarSrpite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ej265"]
+_data = {
+"RESET": SubResource("Animation_2hyma"),
+"Rotating": SubResource("Animation_lrdt5")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4f5iy"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unm6b"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyky0"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.239216, 0.501961, 0.227451, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dritr"]
+content_margin_left = 20.0
+bg_color = Color(0.941176, 0.435294, 0.172549, 1)
+border_width_bottom = 15
+border_color = Color(0.752941, 0.321569, 0.0745098, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+anti_aliasing_size = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjm6w"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_nueu0"]
+Button/colors/font_color = Color(0.980392, 0.811765, 0, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 64
+Button/fonts/font = ExtResource("3_yc2oo")
+Button/styles/disabled = SubResource("StyleBoxFlat_4f5iy")
+Button/styles/focus = SubResource("StyleBoxFlat_unm6b")
+Button/styles/hover = SubResource("StyleBoxFlat_tyky0")
+Button/styles/normal = SubResource("StyleBoxFlat_dritr")
+Button/styles/pressed = SubResource("StyleBoxFlat_fjm6w")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krisp"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_al3y3"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8emph"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yea76"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqljc"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6lwh"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyxdc"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6cl6"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt5co"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u2bd"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkd2t"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo6tu"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lny3n"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk5sv"]
+atlas = ExtResource("4_nqp76")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vuqjn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krisp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_al3y3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8emph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yea76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqljc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6lwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyxdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6cl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt5co")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u2bd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkd2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo6tu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lny3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk5sv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="CarSlot" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 481.0
+offset_top = 299.0
+offset_right = 481.0
+offset_bottom = 299.0
+scale = Vector2(2.5, 2.5)
+
+[node name="Sun" type="Sprite2D" parent="."]
+position = Vector2(-24.4, -0.800001)
+scale = Vector2(8, 7)
+texture = ExtResource("1_yx3t4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ej265")
+}
+autoplay = "Rotating"
+
+[node name="CarSrpite" type="Sprite2D" parent="."]
+position = Vector2(-21.6, -1.90735e-06)
+texture = ExtResource("1_8atol")
+hframes = 7
+vframes = 7
+
+[node name="CarName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -60.0
+offset_right = 398.0
+offset_bottom = 24.0
+scale = Vector2(0.3, 0.3)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.152941, 0.152941, 0.152941, 1)
+theme_override_colors/font_outline_color = Color(0.054902, 0.0313726, 0, 0.247059)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("3_kmg6p")
+theme_override_font_sizes/font_size = 70
+text = "CARNAME"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.6
+offset_top = 59.2
+offset_right = 451.4
+offset_bottom = 213.2
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+theme = SubResource("Theme_nueu0")
+text = "999999
+"
+alignment = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Button"]
+modulate = Color(0.92549, 0.913725, 0, 1)
+layout_mode = 0
+offset_left = 3.3
+offset_top = 1.1
+offset_right = 51.3
+offset_bottom = 41.1
+scale = Vector2(0.25, 0.15)
+
+[node name="Coin2" type="AnimatedSprite2D" parent="Button/HBoxContainer"]
+position = Vector2(1832.13, 437.111)
+scale = Vector2(25, 35)
+sprite_frames = SubResource("SpriteFrames_vuqjn")
+autoplay = "default"
+frame_progress = 0.114978
+
+[node name="Label" type="Label" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = -55.6
+offset_top = 37.6
+offset_right = -27.6
+offset_bottom = 60.6
+theme_override_fonts/font = ExtResource("3_kmg6p")
+text = "2
+"
+horizontal_alignment = 1
+
+[node name="Heart" type="Sprite2D" parent="Label"]
+position = Vector2(-6, 6.8)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("1_8817i")
+
+[node name="Label2" type="Label" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = 10.8
+offset_top = 37.6
+offset_right = 38.8
+offset_bottom = 60.6
+theme_override_fonts/font = ExtResource("3_kmg6p")
+text = "2
+"
+horizontal_alignment = 1
+
+[node name="Heart" type="Sprite2D" parent="Label2"]
+position = Vector2(-7.2, 6)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("1_8817i")

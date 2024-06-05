@@ -1,36 +1,81 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8dvcjuyxd6pq"]
+[gd_scene load_steps=5 format=3 uid="uid://c8dvcjuyxd6pq"]
 
-[ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="1_0p0yk"]
-[ext_resource type="Texture2D" uid="uid://bj76w33q01sva" path="res://Backgrounds/sun.png" id="3_pdvxu"]
+[ext_resource type="Shader" path="res://scenes/Garage.gdshader" id="1_fh2bu"]
+[ext_resource type="Texture2D" uid="uid://cqy3ksfy4ikxd" path="res://Backgrounds/backgroundInverval.png" id="2_km5k0"]
+[ext_resource type="PackedScene" uid="uid://cxw5cllo4rcae" path="res://CarSlot.tscn" id="3_nyd7k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8wb6"]
+shader = ExtResource("1_fh2bu")
+shader_parameter/speed = 0.2
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="BackgroundColor" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -60.0
+offset_right = 98.0
+offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.258824, 0.141176, 0.537255, 1)
 
-[node name="Background" type="Sprite2D" parent="HBoxContainer"]
-position = Vector2(536, -377.5)
-scale = Vector2(9.49219, 9.62917)
-texture = ExtResource("1_0p0yk")
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0, 0.517647, 0.294118, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_i8wb6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -113.0
+offset_top = -75.0
+offset_right = 1445.0
+offset_bottom = 833.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_km5k0")
+stretch_mode = 1
 
-[node name="CenterContainer" type="HBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+z_index = 4
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -837.0
+offset_top = -276.0
+offset_right = -199.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2.5, 2.5)
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
 
-[node name="Sun" type="Sprite2D" parent="CenterContainer"]
-z_index = 1
-scale = Vector2(20, 20)
-texture = ExtResource("3_pdvxu")
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/separation = 210
+
+[node name="CarSlot" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
+layout_mode = 2
+
+[node name="CarSlot2" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
+layout_mode = 2
+
+[node name="CarSlot3" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
+layout_mode = 2
+
+[node name="CarSlot4" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
+layout_mode = 2
+
+[node name="CarSlot5" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
+layout_mode = 2
+
+[node name="CarSlot6" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
+layout_mode = 2

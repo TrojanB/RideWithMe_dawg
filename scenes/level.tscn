@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c0vxtaghy7271" path="res://Backgrounds/road.png" id="2_pcuta"]
 [ext_resource type="Script" path="res://scenes/RoadMonig.gd" id="3_gltqv"]
 [ext_resource type="FontFile" uid="uid://8gank5pbvpbg" path="res://Fonts/BadMofo.ttf" id="4_4wdc5"]
-[ext_resource type="FontFile" uid="uid://do8s0h3hbds6y" path="res://Fonts/Franchise.ttf" id="4_g6npy"]
+[ext_resource type="FontFile" uid="uid://do8s0h3hbds6y" path="res://scenes/Franchise.ttf" id="4_g6npy"]
 [ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="5_01iqc"]
 [ext_resource type="Texture2D" uid="uid://cy1lne4x00apm" path="res://SUPERCAR/arrowFinaly.png" id="5_uv5au"]
 [ext_resource type="PackedScene" uid="uid://btl5rmr88bgbv" path="res://scenes/score.tscn" id="6_52uox"]

@@ -1,11 +1,13 @@
-[gd_scene load_steps=31 format=3 uid="uid://cxw5cllo4rcae"]
+[gd_scene load_steps=35 format=3 uid="uid://cxw5cllo4rcae"]
 
 [ext_resource type="Texture2D" uid="uid://c3vgcfn1kuxgc" path="res://PlayerCars/LUXURY_GAME/Black_LUXURY_CLEAN_All_000-sheet.png" id="1_8atol"]
 [ext_resource type="Texture2D" uid="uid://djoa44w63fk06" path="res://Textures/heart.png" id="1_8817i"]
+[ext_resource type="Script" path="res://scripts/CarSlot.gd" id="1_ncxy4"]
 [ext_resource type="Texture2D" uid="uid://bj76w33q01sva" path="res://Backgrounds/sun.png" id="1_yx3t4"]
+[ext_resource type="Texture2D" uid="uid://dbfu1yb4sx6e" path="res://PlayerCars/SPORT_GAME/Red_SPORT_CLEAN_All_000-sheet.png" id="2_830o8"]
 [ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="3_kmg6p"]
-[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://Fonts/PressStart2P-Regular.ttf" id="3_yc2oo"]
 [ext_resource type="Texture2D" uid="uid://b88wpt6xejoua" path="res://Textures/coin1_16x16.png" id="4_nqp76"]
+[ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/speedIcon.png" id="7_k56i6"]
 
 [sub_resource type="Animation" id="Animation_2hyma"]
 length = 0.001
@@ -79,15 +81,12 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyky0"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.239216, 0.501961, 0.227451, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+content_margin_left = 20.0
+bg_color = Color(0.686275, 0.301961, 0.0784314, 1)
+border_width_bottom = 15
+border_color = Color(0.478431, 0.2, 0.0392157, 1)
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dritr"]
@@ -118,7 +117,7 @@ corner_detail = 5
 Button/colors/font_color = Color(0.980392, 0.811765, 0, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.870588, 0.721569, 0, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/font_outline_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -131,7 +130,7 @@ Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 10
 Button/font_sizes/font_size = 64
-Button/fonts/font = ExtResource("3_yc2oo")
+Button/fonts/font = ExtResource("3_kmg6p")
 Button/styles/disabled = SubResource("StyleBoxFlat_4f5iy")
 Button/styles/focus = SubResource("StyleBoxFlat_unm6b")
 Button/styles/hover = SubResource("StyleBoxFlat_tyky0")
@@ -244,6 +243,30 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Shader" id="Shader_lf6a5"]
+code = "shader_type canvas_item;
+
+void fragment() {
+    // Pobierz kolor tła z tekstury
+    COLOR background_color = texture(TEXTURE, SCREEN_UV);
+
+    // Sprawdź, czy tło jest niewidoczne (wartość alfa równa 0)
+    if (background_color.a == 0.0) {
+        // Jeśli tło jest niewidoczne, ustaw kolor na zielony
+        COLOR green_color = vec4(0.0, 1.0, 0.0, 1.0);
+        COLOR final_color = green_color;
+        COLOR output_color = final_color;
+        COLOR_MOD = output_color;
+    } else {
+        // W przeciwnym razie zachowaj oryginalny kolor
+        COLOR_MOD = background_color;
+    }
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b4ocp"]
+shader = SubResource("Shader_lf6a5")
+
 [node name="CarSlot" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -252,6 +275,8 @@ offset_top = 299.0
 offset_right = 481.0
 offset_bottom = 299.0
 scale = Vector2(2.5, 2.5)
+script = ExtResource("1_ncxy4")
+txt = ExtResource("2_830o8")
 
 [node name="Sun" type="Sprite2D" parent="."]
 position = Vector2(-24.4, -0.800001)
@@ -289,6 +314,7 @@ theme_override_constants/outline_size = 25
 theme_override_fonts/font = ExtResource("3_kmg6p")
 theme_override_font_sizes/font_size = 70
 text = "CARNAME"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -305,27 +331,19 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 theme = SubResource("Theme_nueu0")
-text = "999999
+text = "9
+
 "
 alignment = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Button"]
-modulate = Color(0.92549, 0.913725, 0, 1)
-layout_mode = 0
-offset_left = 3.3
-offset_top = 1.1
-offset_right = 51.3
-offset_bottom = 41.1
-scale = Vector2(0.25, 0.15)
-
-[node name="Coin2" type="AnimatedSprite2D" parent="Button/HBoxContainer"]
-position = Vector2(1832.13, 437.111)
-scale = Vector2(25, 35)
+[node name="Coin2" type="AnimatedSprite2D" parent="Button"]
+position = Vector2(461.333, 66.6666)
+scale = Vector2(6.25, 5.25)
 sprite_frames = SubResource("SpriteFrames_vuqjn")
 autoplay = "default"
 frame_progress = 0.114978
 
-[node name="Label" type="Label" parent="."]
+[node name="Lifes" type="Label" parent="."]
 z_index = 2
 layout_mode = 0
 offset_left = -55.6
@@ -337,12 +355,12 @@ text = "2
 "
 horizontal_alignment = 1
 
-[node name="Heart" type="Sprite2D" parent="Label"]
+[node name="HeartIcon" type="Sprite2D" parent="Lifes"]
 position = Vector2(-6, 6.8)
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("1_8817i")
 
-[node name="Label2" type="Label" parent="."]
+[node name="Speed" type="Label" parent="."]
 z_index = 2
 layout_mode = 0
 offset_left = 10.8
@@ -354,7 +372,16 @@ text = "2
 "
 horizontal_alignment = 1
 
-[node name="Heart" type="Sprite2D" parent="Label2"]
-position = Vector2(-7.2, 6)
-scale = Vector2(0.02, 0.02)
-texture = ExtResource("1_8817i")
+[node name="SpeedIcon2" type="Sprite2D" parent="Speed"]
+self_modulate = Color(0.976471, 0.992157, 0.619608, 1)
+material = SubResource("ShaderMaterial_b4ocp")
+position = Vector2(-17.6, 5.6)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("7_k56i6")
+
+[node name="SpeedIcon" type="Sprite2D" parent="Speed"]
+self_modulate = Color(0.976471, 0.992157, 0.619608, 0.992157)
+material = SubResource("ShaderMaterial_b4ocp")
+position = Vector2(-4, 5.6)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("7_k56i6")

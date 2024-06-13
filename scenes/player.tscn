@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://q8v04iswc7b"]
+[gd_scene load_steps=13 format=3 uid="uid://q8v04iswc7b"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_xav44"]
 [ext_resource type="Texture2D" uid="uid://df7rc3c1padjq" path="res://SUPERCAR/White_SUPERCAR_CLEAN_All_000-sheet.png" id="2_tr8v0"]
@@ -32,6 +32,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_046w1"]
@@ -118,9 +130,26 @@ tracks/1/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_4xkjb"]
+resource_name = "flashing"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.0666667)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fklqm"]
 _data = {
 "RESET": SubResource("Animation_ifirc"),
+"flashing": SubResource("Animation_4xkjb"),
 "go_down": SubResource("Animation_046w1"),
 "go_up": SubResource("Animation_0vnax"),
 "idle": SubResource("Animation_yswwy")
@@ -170,6 +199,9 @@ position = Vector2(444, 291)
 scale = Vector2(1.9, 1.9)
 script = ExtResource("1_xav44")
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_as_relative = false
 y_sort_enabled = true
@@ -198,4 +230,5 @@ libraries = {
 }
 speed_scale = 10.0
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_area_entered"]

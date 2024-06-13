@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8dvcjuyxd6pq"]
+[gd_scene load_steps=13 format=3 uid="uid://c8dvcjuyxd6pq"]
 
 [ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/speedIcon.png" id="1_e766l"]
 [ext_resource type="Shader" path="res://scenes/Garage.gdshader" id="1_fh2bu"]
 [ext_resource type="Texture2D" uid="uid://cqy3ksfy4ikxd" path="res://Backgrounds/backgroundInverval.png" id="2_km5k0"]
 [ext_resource type="Script" path="res://scenes/CarScrollingFrame.gd" id="3_3fsl3"]
 [ext_resource type="PackedScene" uid="uid://cxw5cllo4rcae" path="res://CarSlot.tscn" id="3_nyd7k"]
-[ext_resource type="PackedScene" uid="uid://yestctbq3mnt" path="res://filler.tscn" id="4_6j4wx"]
 [ext_resource type="Texture2D" uid="uid://8vi1p4veox54" path="res://PlayerCars/SEDAN_GAME/Black_SEDAN_CLEAN_All_000-sheet.png" id="4_qhk1y"]
 [ext_resource type="Texture2D" uid="uid://ct5j55ge40xix" path="res://PlayerCars/MUSCLE_CAR_GAME/Yellow_MUSCLECAR_CLEAN_All_000-sheet.png" id="5_bwram"]
 [ext_resource type="Texture2D" uid="uid://bl45k01tpsbnd" path="res://PlayerCars/LUXURY_GAME/White_LUXURY_CLEAN_All_000-sheet.png" id="6_aw6ln"]
@@ -56,9 +55,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -837.0
-offset_top = -304.0
+offset_top = -276.0
 offset_right = -199.0
-offset_bottom = -54.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.5, 2.5)
@@ -72,46 +71,36 @@ size_flags_vertical = 6
 theme_override_constants/separation = 210
 script = ExtResource("3_3fsl3")
 
-[node name="filler" parent="ScrollContainer/HBoxContainer" instance=ExtResource("4_6j4wx")]
-layout_mode = 2
-
-[node name="filler2" parent="ScrollContainer/HBoxContainer" instance=ExtResource("4_6j4wx")]
-layout_mode = 2
-
 [node name="CarSlot" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
 layout_mode = 2
 isBought = true
 car_name = "auto1"
-lifes = 2
 txt = ExtResource("4_qhk1y")
 
 [node name="CarSlot2" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
 layout_mode = 2
+isBought = true
 car_name = "auto2"
-lifes = 3
 txt = ExtResource("5_bwram")
 
 [node name="CarSlot3" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
 layout_mode = 2
+isBought = true
 car_name = "auto3"
 txt = ExtResource("6_aw6ln")
 
 [node name="CarSlot4" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
 layout_mode = 2
+isBought = true
 car_name = "auto4"
 txt = ExtResource("7_27tlo")
 
 [node name="CarSlot5" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
 layout_mode = 2
+isBought = true
 car_name = "auto5"
 
 [node name="CarSlot6" parent="ScrollContainer/HBoxContainer" instance=ExtResource("3_nyd7k")]
-layout_mode = 2
-
-[node name="filler3" parent="ScrollContainer/HBoxContainer" instance=ExtResource("4_6j4wx")]
-layout_mode = 2
-
-[node name="filler4" parent="ScrollContainer/HBoxContainer" instance=ExtResource("4_6j4wx")]
 layout_mode = 2
 
 [node name="GarageToMenuButton" type="Button" parent="."]

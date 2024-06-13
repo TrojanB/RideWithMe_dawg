@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cv4403e80efw1"]
+[gd_scene load_steps=26 format=3 uid="uid://cv4403e80efw1"]
 
 [ext_resource type="Script" path="res://scenes/spawnCars.gd" id="1_4y6k3"]
 [ext_resource type="PackedScene" uid="uid://q8v04iswc7b" path="res://scenes/player.tscn" id="2_m8xtx"]
@@ -10,13 +10,56 @@
 [ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="5_01iqc"]
 [ext_resource type="Texture2D" uid="uid://cy1lne4x00apm" path="res://SUPERCAR/arrowFinaly.png" id="5_uv5au"]
 [ext_resource type="PackedScene" uid="uid://btl5rmr88bgbv" path="res://scenes/score.tscn" id="6_52uox"]
+[ext_resource type="Texture2D" uid="uid://b88wpt6xejoua" path="res://Textures/coin1_16x16.png" id="7_e5luw"]
+[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="7_gbhxh"]
 [ext_resource type="Script" path="res://scenes/Backgrounds.gd" id="7_j3kr5"]
 [ext_resource type="Texture2D" uid="uid://dhsuhqgl7eass" path="res://Backgrounds/back.png" id="7_yn3ak"]
+[ext_resource type="Script" path="res://scenes/ScoreMoney.gd" id="8_unxi0"]
+[ext_resource type="Texture2D" uid="uid://djoa44w63fk06" path="res://Textures/heart.png" id="10_2gycy"]
+[ext_resource type="Script" path="res://scenes/Lifes.gd" id="10_olenw"]
 [ext_resource type="Script" path="res://scenes/time.gd" id="10_wxlwk"]
 [ext_resource type="PackedScene" uid="uid://642erslk4ylp" path="res://scenes/game_over.tscn" id="11_pyprd"]
 [ext_resource type="PackedScene" uid="uid://df6faxuclij8m" path="res://loading.tscn" id="12_3qp1a"]
 [ext_resource type="AudioStream" uid="uid://d3ur3vfmj8rcd" path="res://music/videogame-death-sound-43894.mp3" id="15_g0cl5"]
 [ext_resource type="Script" path="res://scenes/GameOverSound.gd" id="16_gx0ym"]
+
+[sub_resource type="Animation" id="Animation_d470u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_efxbl"]
+resource_name = "collectedCoin"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.09, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(7, 7), Vector2(5, 5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rdl03"]
+_data = {
+"RESET": SubResource("Animation_d470u"),
+"collectedCoin": SubResource("Animation_efxbl")
+}
 
 [node name="level" type="Node2D"]
 y_sort_enabled = true
@@ -73,6 +116,60 @@ theme_override_fonts/font = ExtResource("4_g6npy")
 theme_override_font_sizes/font_size = 50
 text = "TIME: 999999"
 script = ExtResource("10_wxlwk")
+
+[node name="Money" type="Label" parent="CanvasLayer/HBoxContainer/UI"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = 170.0
+offset_right = 132.0
+offset_bottom = 262.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_gbhxh")
+theme_override_font_sizes/font_size = 64
+text = "0
+"
+horizontal_alignment = 2
+script = ExtResource("8_unxi0")
+
+[node name="MoneyIcon" type="Sprite2D" parent="CanvasLayer/HBoxContainer/UI/Money"]
+z_index = 8
+position = Vector2(300, 30)
+scale = Vector2(5, 5)
+texture = ExtResource("7_e5luw")
+hframes = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/HBoxContainer/UI/Money/MoneyIcon"]
+libraries = {
+"": SubResource("AnimationLibrary_rdl03")
+}
+
+[node name="Lifes" type="Label" parent="CanvasLayer/HBoxContainer/UI"]
+layout_mode = 0
+offset_left = -400.0
+offset_top = 170.0
+offset_right = -168.0
+offset_bottom = 262.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_gbhxh")
+theme_override_font_sizes/font_size = 64
+text = "0
+"
+horizontal_alignment = 2
+script = ExtResource("10_olenw")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer/UI/Lifes"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.212
+anchor_top = 0.313
+anchor_right = 1.212
+anchor_bottom = 0.313
+offset_left = -51.184
+offset_top = -48.796
+offset_right = 204.816
+offset_bottom = 220.204
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("10_2gycy")
 
 [node name="Up" type="TouchScreenButton" parent="CanvasLayer/HBoxContainer/UI"]
 modulate = Color(1, 1, 1, 0.823529)
@@ -183,6 +280,7 @@ pitch_scale = 2.5
 script = ExtResource("16_gx0ym")
 
 [connection signal="ready" from="." to="LoadingShit" method="_on_level_ready"]
+[connection signal="addCoin" from="CanvasLayer/HBoxContainer/UI/Score" to="CanvasLayer/HBoxContainer/UI/Money" method="_on_score_add_coin"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/UI/Up" to="CanvasLayer/HBoxContainer/UI" method="_on_up_pressed"]
 [connection signal="released" from="CanvasLayer/HBoxContainer/UI/Up" to="CanvasLayer/HBoxContainer/UI" method="_on_up_released"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/UI/Down" to="CanvasLayer/HBoxContainer/UI" method="_on_down_pressed"]
@@ -190,10 +288,12 @@ script = ExtResource("16_gx0ym")
 [connection signal="playerHasLost" from="Player" to="." method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Score" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Time" method="_on_player_player_has_lost"]
+[connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Money" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="city" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="city2" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="city3" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="AudioStreamPlayer2D" method="_on_player_player_has_lost"]
+[connection signal="player_hit" from="Player" to="CanvasLayer/HBoxContainer/UI/Lifes" method="_on_player_player_hit"]
 [connection signal="sendSpeedToScore" from="Player" to="CanvasLayer/HBoxContainer/UI/Score" method="_on_player_send_speed_to_score"]
 [connection signal="speed_changed" from="Player" to="." method="_on_player_speed_changed"]
 [connection signal="speed_changed" from="Player" to="Road1" method="_on_player_speed_changed"]

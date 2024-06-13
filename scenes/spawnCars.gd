@@ -56,7 +56,6 @@ func _on_player_player_has_lost(playerHasLost):
 
 
 func _on_player_speed_changed(speed):
-	if index+1 <= len(spawnDelays) and not hasPlayerLost:
+	if index+1 <= len(spawnDelays) - 1 and not hasPlayerLost:
 		index+=1
-		print(spawnDelays[index])
 

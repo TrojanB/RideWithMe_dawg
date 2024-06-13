@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cxw5cllo4rcae"]
+[gd_scene load_steps=38 format=3 uid="uid://cxw5cllo4rcae"]
 
 [ext_resource type="Texture2D" uid="uid://c3vgcfn1kuxgc" path="res://PlayerCars/LUXURY_GAME/Black_LUXURY_CLEAN_All_000-sheet.png" id="1_8atol"]
 [ext_resource type="Texture2D" uid="uid://djoa44w63fk06" path="res://Textures/heart.png" id="1_8817i"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="3_kmg6p"]
 [ext_resource type="Texture2D" uid="uid://b88wpt6xejoua" path="res://Textures/coin1_16x16.png" id="4_nqp76"]
 [ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/speedIcon.png" id="7_k56i6"]
+[ext_resource type="Script" path="res://EquipButton.gd" id="8_yrutw"]
 
 [sub_resource type="Animation" id="Animation_2hyma"]
 length = 0.001
@@ -243,6 +244,22 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crg0i"]
+bg_color = Color(0.439216, 0.690196, 0.960784, 1)
+border_width_bottom = 15
+border_color = Color(0.196078, 0.521569, 0.839216, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Theme" id="Theme_fc17j"]
+default_font = ExtResource("3_kmg6p")
+default_font_size = 64
+Button/colors/font_outline_color = Color(0.0313726, 0.392157, 0.65098, 1)
+Button/constants/outline_size = 10
+Button/styles/normal = SubResource("StyleBoxFlat_crg0i")
+
 [sub_resource type="Shader" id="Shader_lf6a5"]
 code = "shader_type canvas_item;
 
@@ -316,7 +333,7 @@ theme_override_font_sizes/font_size = 70
 text = "CARNAME"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="BuyButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -336,12 +353,30 @@ text = "9
 "
 alignment = 0
 
-[node name="Coin2" type="AnimatedSprite2D" parent="Button"]
+[node name="Coin2" type="AnimatedSprite2D" parent="BuyButton"]
 position = Vector2(461.333, 66.6666)
 scale = Vector2(6.25, 5.25)
 sprite_frames = SubResource("SpriteFrames_vuqjn")
 autoplay = "default"
 frame_progress = 0.114978
+
+[node name="SelectButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.6
+offset_top = 59.2
+offset_right = 451.4
+offset_bottom = 213.2
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+theme = SubResource("Theme_fc17j")
+text = "SELECT"
+script = ExtResource("8_yrutw")
 
 [node name="Lifes" type="Label" parent="."]
 z_index = 2
@@ -357,7 +392,7 @@ horizontal_alignment = 1
 
 [node name="HeartIcon" type="Sprite2D" parent="Lifes"]
 position = Vector2(-6, 6.8)
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_8817i")
 
 [node name="Speed" type="Label" parent="."]
@@ -385,3 +420,6 @@ material = SubResource("ShaderMaterial_b4ocp")
 position = Vector2(-4, 5.6)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("7_k56i6")
+
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="SelectButton" to="SelectButton" method="_on_pressed"]

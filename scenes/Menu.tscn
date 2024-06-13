@@ -1,21 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://cus8fcubhxhco"]
+[gd_scene load_steps=35 format=3 uid="uid://cus8fcubhxhco"]
 
-[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="1_dknlt"]
 [ext_resource type="Script" path="res://scenes/Menu.gd" id="1_vb6i4"]
 [ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="2_5co7e"]
 [ext_resource type="Texture2D" uid="uid://cgebisvfxsl0t" path="res://Backgrounds/palms.png" id="3_0yd1u"]
 [ext_resource type="Script" path="res://scenes/HighScore.gd" id="3_3wllv"]
-[ext_resource type="Texture2D" uid="uid://bj76w33q01sva" path="res://Backgrounds/sun.png" id="4_wwsyq"]
 [ext_resource type="Theme" uid="uid://bt47ky8s6sja5" path="res://Backgrounds/buttonTheme.tres" id="5_cohfj"]
+[ext_resource type="Script" path="res://scenes/MoneyMenu.gd" id="5_hdubp"]
 [ext_resource type="Script" path="res://PlayButton.gd" id="6_ynor3"]
 [ext_resource type="PackedScene" uid="uid://dhf7xc286bime" path="res://Backgrounds/parallax_background.tscn" id="7_ea8tl"]
+[ext_resource type="Texture2D" uid="uid://b4uux1o60jpq6" path="res://Textures/playIcon.png" id="9_bicwb"]
+[ext_resource type="Texture2D" uid="uid://ce2y4o5o2f34x" path="res://Textures/garageIcon.png" id="10_1183m"]
+[ext_resource type="Script" path="res://scenes/GarageButton.gd" id="10_n56rt"]
+[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="10_rxqbr"]
+[ext_resource type="Texture2D" uid="uid://cgy0rft3xa07q" path="res://Textures/settingsIcon.png" id="12_vk5rn"]
+[ext_resource type="Texture2D" uid="uid://b88wpt6xejoua" path="res://Textures/coin1_16x16.png" id="14_g023j"]
 
 [sub_resource type="Animation" id="Animation_x5y38"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Label2:theme_override_colors/font_color")
+tracks/0/path = NodePath("../HighScoreLabel:theme_override_colors/font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,7 +32,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HighScore:theme_override_colors/font_color")
+tracks/1/path = NodePath("../HighScoreLabel/HighScore:theme_override_colors/font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -44,7 +49,7 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Label2:theme_override_colors/font_color")
+tracks/0/path = NodePath("../HighScoreLabel:theme_override_colors/font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -56,7 +61,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../HighScore:theme_override_colors/font_color")
+tracks/1/path = NodePath("../HighScoreLabel/HighScore:theme_override_colors/font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -71,6 +76,121 @@ _data = {
 "RESET": SubResource("Animation_x5y38"),
 "glow": SubResource("Animation_6qnn4")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts504"]
+atlas = ExtResource("14_g023j")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8dg8"]
+atlas = ExtResource("14_g023j")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4e82"]
+atlas = ExtResource("14_g023j")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh3sp"]
+atlas = ExtResource("14_g023j")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxb1r"]
+atlas = ExtResource("14_g023j")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwndb"]
+atlas = ExtResource("14_g023j")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bldem"]
+atlas = ExtResource("14_g023j")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrijv"]
+atlas = ExtResource("14_g023j")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pivxl"]
+atlas = ExtResource("14_g023j")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nisxn"]
+atlas = ExtResource("14_g023j")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_escr0"]
+atlas = ExtResource("14_g023j")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hck34"]
+atlas = ExtResource("14_g023j")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_meurr"]
+atlas = ExtResource("14_g023j")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6r71"]
+atlas = ExtResource("14_g023j")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw03q"]
+atlas = ExtResource("14_g023j")
+region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5b262"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ts504")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8dg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4e82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh3sp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxb1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwndb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bldem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrijv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pivxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nisxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_escr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hck34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_meurr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nw03q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="ImageTexture" id="ImageTexture_0r4mf"]
 
 [node name="Control" type="Control"]
 y_sort_enabled = true
@@ -87,7 +207,7 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 script = ExtResource("1_vb6i4")
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
 z_index = 10
 texture_filter = 1
 layout_mode = 0
@@ -97,53 +217,182 @@ offset_right = 380.0
 offset_bottom = 491.0
 theme_override_colors/font_color = Color(0.945098, 0.6, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.894118, 0.760784, 0.203922, 1)
-theme_override_fonts/font = ExtResource("1_dknlt")
+theme_override_fonts/font = ExtResource("10_rxqbr")
 theme_override_font_sizes/font_size = 32
 text = "Ride With Me
 "
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
+[node name="HighScoreLabel" type="Label" parent="."]
 z_index = 10
 texture_filter = 1
 layout_mode = 0
-offset_left = 23.5
-offset_top = 604.5
-offset_right = 287.5
-offset_bottom = 655.5
+offset_left = 297.0
+offset_top = 482.5
+offset_right = 561.0
+offset_bottom = 533.5
 theme_override_colors/font_color = Color(1, 0.65098, 0.141176, 1)
 theme_override_colors/font_shadow_color = Color(0.894118, 0.760784, 0.203922, 1)
-theme_override_fonts/font = ExtResource("1_dknlt")
+theme_override_fonts/font = ExtResource("10_rxqbr")
 theme_override_font_sizes/font_size = 24
 text = "HIGH SCORE:
 
 "
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
-root_node = NodePath("../../Label")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HighScoreLabel"]
+root_node = NodePath("../../Title")
 libraries = {
 "": SubResource("AnimationLibrary_icpoa")
 }
 autoplay = "glow"
 
-[node name="HighScore" type="Label" parent="."]
+[node name="HighScore" type="Label" parent="HighScoreLabel"]
 z_index = 10
 texture_filter = 1
 layout_mode = 0
-offset_left = 21.0
-offset_top = 646.5
-offset_right = 285.0
-offset_bottom = 697.5
+offset_left = -6.0
+offset_top = 42.0
+offset_right = 258.0
+offset_bottom = 93.0
 theme_override_colors/font_color = Color(0.945098, 0.6, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.894118, 0.760784, 0.203922, 1)
-theme_override_fonts/font = ExtResource("1_dknlt")
+theme_override_fonts/font = ExtResource("10_rxqbr")
 theme_override_font_sizes/font_size = 24
 text = "0
 
 "
 horizontal_alignment = 1
 script = ExtResource("3_3wllv")
+
+[node name="Money" type="Label" parent="."]
+z_index = 5
+layout_mode = 0
+offset_left = 397.0
+offset_top = 597.0
+offset_right = 493.0
+offset_bottom = 662.0
+theme_override_fonts/font = ExtResource("10_rxqbr")
+theme_override_font_sizes/font_size = 32
+text = "999
+"
+horizontal_alignment = 2
+script = ExtResource("5_hdubp")
+
+[node name="MoneyIcon" type="AnimatedSprite2D" parent="Money"]
+position = Vector2(128, 14)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_5b262")
+autoplay = "default"
+
+[node name="PlayButton2" type="Button" parent="."]
+z_index = 3
+layout_mode = 0
+offset_left = 17.5
+offset_top = 524.5
+offset_right = 263.5
+offset_bottom = 600.5
+theme = ExtResource("5_cohfj")
+theme_override_fonts/font = ExtResource("10_rxqbr")
+theme_override_font_sizes/font_size = 32
+text = "
+
+"
+icon = SubResource("ImageTexture_0r4mf")
+alignment = 0
+script = ExtResource("6_ynor3")
+
+[node name="TextureRect" type="TextureRect" parent="PlayButton2"]
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_top = 0.341
+anchor_right = 0.8
+anchor_bottom = 0.341
+offset_left = -19.8
+offset_top = -15.916
+offset_right = 492.2
+offset_bottom = 496.084
+rotation = -0.10472
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("9_bicwb")
+
+[node name="Label" type="Label" parent="PlayButton2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.171
+anchor_top = 0.336
+anchor_right = 0.171
+anchor_bottom = 0.336
+offset_left = -0.0660019
+offset_top = -0.0360012
+offset_right = 127.934
+offset_bottom = 31.964
+rotation = -0.0872665
+theme_override_fonts/font = ExtResource("10_rxqbr")
+theme_override_font_sizes/font_size = 32
+text = "PLAY
+"
+
+[node name="GarageButton" type="Button" parent="."]
+z_index = 4
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.129
+anchor_top = 0.974
+anchor_right = 0.129
+anchor_bottom = 0.974
+offset_left = -126.608
+offset_top = -21.152
+offset_right = 26.392
+offset_bottom = 33.848
+theme = ExtResource("5_cohfj")
+script = ExtResource("10_n56rt")
+
+[node name="garageIcon" type="TextureRect" parent="GarageButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.496
+anchor_top = 0.382
+anchor_right = 0.496
+anchor_bottom = 0.382
+offset_left = -23.388
+offset_top = -18.51
+offset_right = 488.612
+offset_bottom = 493.49
+rotation = -0.0872665
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("10_1183m")
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.457
+anchor_top = 0.663
+anchor_right = 0.457
+anchor_bottom = 0.663
+offset_left = -22.464
+offset_top = -18.624
+offset_right = 68.536
+offset_bottom = 56.376
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("5_cohfj")
+
+[node name="TextureRect" type="TextureRect" parent="Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.487
+anchor_top = 0.457
+anchor_right = 0.5
+anchor_bottom = 0.457
+offset_left = -36.317
+offset_top = -31.275
+offset_right = 474.5
+offset_bottom = 480.725
+rotation = -0.0872665
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("12_vk5rn")
 
 [node name="City" type="Sprite2D" parent="."]
 z_index = 3
@@ -158,39 +407,7 @@ position = Vector2(482.663, 726.5)
 scale = Vector2(3.19838, 1.89948)
 texture = ExtResource("3_0yd1u")
 
-[node name="Sun" type="Sprite2D" parent="."]
-z_index = -5
-position = Vector2(-352.5, 592)
-scale = Vector2(4.39941, 3.55599)
-texture = ExtResource("4_wwsyq")
-
-[node name="PlayButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = -287.118
-offset_top = 164.0
-offset_right = -13.118
-offset_bottom = 240.0
-theme = ExtResource("5_cohfj")
-theme_override_fonts/font = ExtResource("1_dknlt")
-theme_override_font_sizes/font_size = 30
-text = "PLAY
-"
-
-[node name="PlayButton2" type="Button" parent="."]
-z_index = 3
-layout_mode = 0
-offset_left = 13.882
-offset_top = 517.5
-offset_right = 287.882
-offset_bottom = 593.5
-theme = ExtResource("5_cohfj")
-theme_override_fonts/font = ExtResource("1_dknlt")
-theme_override_font_sizes/font_size = 32
-text = "PLAY
-"
-script = ExtResource("6_ynor3")
-
 [node name="ParallaxBackground" parent="." instance=ExtResource("7_ea8tl")]
 
-[connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_pressed"]
 [connection signal="pressed" from="PlayButton2" to="PlayButton2" method="_on_pressed"]
+[connection signal="pressed" from="GarageButton" to="GarageButton" method="_on_pressed"]

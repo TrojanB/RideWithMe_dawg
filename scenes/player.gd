@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 var speeds = [900, 1800, 2700, 3600, 4500]
 var intervals = [20,40,80,120]
 var index = 0
@@ -11,7 +10,9 @@ var previous_speed:float
 
 signal sendSpeedToScore(speed:float)
 signal speed_changed(speed:float)
+signal player_hit(lifes:int)
 
+@onready var timer = $Timer
 @onready var animation:AnimationPlayer = $AnimationPlayer
 @onready var collisionAnimation = $Collision
 @onready var level = $".."
@@ -19,12 +20,16 @@ signal speed_changed(speed:float)
 var start_turning_up = false
 var start_turning_down = false
 var turningForce = 350
+var lifes = Menu.lifes
+var is_immortal = false
 
 signal playerHasLost(playerHasLost:bool)
 var playerLost = false
 
 func _ready():
 	speed_changed.emit(current_speed)
+	if Menu.carTexture != null:
+		$Sprite2D.texture = Menu.carTexture
 	$Sprite2D.frame = 0
 
 func _physics_process(delta):
@@ -45,7 +50,6 @@ func _physics_process(delta):
 		speed_changed.emit(current_speed)
 		previous_speed = current_speed
 func _process(delta):
-	print(str(position.y))
 	sendSpeedToScore.emit(round(current_speed/1000))
 	if index < len(intervals) and not playerLost:
 		timeCounter += delta
@@ -76,16 +80,25 @@ func wait(seconds: float):
 
 
 func _on_area_2d_area_entered(car):
-	current_speed = 0
-	previous_speed = 0
-	speed_changed.emit(current_speed)
-	collisionAnimation.play("collision")
-	playerLost = true
-	
-	if level:
-		for item in level.get_children():
-			if item.has_method("stop_car"):
-				item.stop_car()
-				playerHasLost.emit(true)
-		
-	
+	if not is_immortal:
+		lifes -=1 
+		player_hit.emit(lifes)
+		is_immortal = true
+		timer.start()
+		animation.play("flashing")
+		if lifes <= 0:  #Jesli gracz stracil wysztkie zycia przegrywa 
+			current_speed = 0
+			previous_speed = 0
+			speed_changed.emit(current_speed)
+			collisionAnimation.play("collision")
+			playerLost = true
+			
+			if level:
+				for item in level.get_children():
+					if item.has_method("stop_car"):
+						item.stop_car()
+						playerHasLost.emit(true)
+
+func _on_timer_timeout():
+	is_immortal = false
+	animation.play("RESET")

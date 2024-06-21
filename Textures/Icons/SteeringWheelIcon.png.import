@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drmvds3i6afqy"
-path="res://.godot/imported/speedIcon.png-821ea2ef604a596f2780f14772dddc50.ctex"
+uid="uid://c7gyc3kpoaae2"
+path="res://.godot/imported/SteeringWheelIcon.png-9ae7382f0a54c061f9a24a0814a3b020.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/speedIcon.png"
-dest_files=["res://.godot/imported/speedIcon.png-821ea2ef604a596f2780f14772dddc50.ctex"]
+source_file="res://Textures/Icons/SteeringWheelIcon.png"
+dest_files=["res://.godot/imported/SteeringWheelIcon.png-9ae7382f0a54c061f9a24a0814a3b020.ctex"]
 
 [params]
 

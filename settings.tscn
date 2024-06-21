@@ -1,0 +1,138 @@
+[gd_scene load_steps=12 format=3 uid="uid://d3tg7lih1hifd"]
+
+[ext_resource type="Script" path="res://settings.gd" id="1_43dj5"]
+[ext_resource type="Texture2D" uid="uid://x10te84m4rkh" path="res://Textures/Icons/musicIcon.png" id="1_c551j"]
+[ext_resource type="Texture2D" uid="uid://cmk47tssh1pa7" path="res://Textures/Icons/deleteIcon.png" id="2_hyw6d"]
+[ext_resource type="Theme" uid="uid://bt47ky8s6sja5" path="res://Backgrounds/buttonTheme.tres" id="2_oqigm"]
+[ext_resource type="Texture2D" uid="uid://b4uux1o60jpq6" path="res://Textures/Icons/playIcon.png" id="3_c221y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdb1a"]
+bg_color = Color(0.803379, 0.179222, 0.46996, 0.92549)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.986752, 0.986752, 0.986752, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="Theme" id="Theme_86t1d"]
+Panel/styles/panel = SubResource("StyleBoxFlat_cdb1a")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l716x"]
+bg_color = Color(0.908019, 0.70442, 0.185171, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcfc8"]
+bg_color = Color(0.979431, 0.748564, 0.345327, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_1fngb"]
+color = Color(0.203801, 0.138312, 0.367766, 1)
+thickness = 11
+
+[sub_resource type="Theme" id="Theme_u7ch2"]
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_l716x")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_jcfc8")
+HSlider/styles/slider = SubResource("StyleBoxLine_1fngb")
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.738
+offset_bottom = -0.22403
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_43dj5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_86t1d")
+
+[node name="MusicSlider" type="HSlider" parent="Panel"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.527
+anchor_top = 0.226
+anchor_right = 0.527
+anchor_bottom = 0.226
+offset_left = -349.104
+offset_top = -0.0280075
+offset_right = 349.896
+offset_bottom = 236.972
+theme = SubResource("Theme_u7ch2")
+min_value = -100.0
+max_value = 0.0
+value = -10.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MusicSlider"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.089
+anchor_top = 0.5
+anchor_right = -0.089
+anchor_bottom = 0.5
+offset_left = -44.789
+offset_top = -43.0
+offset_right = 83.211
+offset_bottom = 85.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_c551j")
+
+[node name="SfxSlider" type="HSlider" parent="Panel"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.527
+anchor_top = 0.531
+anchor_right = 0.527
+anchor_bottom = 0.531
+offset_left = -349.104
+offset_top = 0.181992
+offset_right = 349.896
+offset_bottom = 237.182
+theme = SubResource("Theme_u7ch2")
+min_value = -100.0
+max_value = 0.0
+value = -10.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/SfxSlider"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.086
+anchor_top = 0.5
+anchor_right = -0.086
+anchor_bottom = 0.5
+offset_left = -50.886
+offset_top = -53.5
+offset_right = 461.114
+offset_bottom = 458.5
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_c221y")
+
+[node name="Button" type="Button" parent="Panel"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.029
+anchor_top = -0.074
+anchor_right = 1.029
+anchor_bottom = -0.074
+offset_left = -124.408
+offset_top = -0.0480042
+offset_right = 52.592
+offset_bottom = 180.952
+grow_horizontal = 0
+scale = Vector2(0.7, 0.7)
+theme = ExtResource("2_oqigm")
+icon = ExtResource("2_hyw6d")
+
+[connection signal="value_changed" from="Panel/MusicSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="Panel/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

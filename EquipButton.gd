@@ -8,3 +8,4 @@ func _on_pressed():
 		Menu.carTexture = car_slot.txt
 		Menu.lifes = car_slot.lifes
 		Menu.speedMultiplier = car_slot.speed
+		Menu.handling = car_slot.handling

@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1x41idvbmvvv"]
+
+[ext_resource type="Texture2D" uid="uid://y33p2pjrvoir" path="res://Textures/card.png" id="1_3lgw8"]
+[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="2_kdtah"]
+[ext_resource type="Texture2D" uid="uid://c7gyc3kpoaae2" path="res://Textures/Icons/SteeringWheelIcon.png" id="3_v5cxy"]
+
+[node name="CardPattern" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="card" type="TextureRect" parent="."]
+self_modulate = Color(0.928531, 0.707585, 0.161075, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(8, 8)
+texture = ExtResource("1_3lgw8")
+
+[node name="upgradeLabel" type="Label" parent="card"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 38.0
+offset_right = 132.0
+offset_bottom = 54.0
+scale = Vector2(0.25, 0.25)
+theme_override_fonts/font = ExtResource("2_kdtah")
+theme_override_font_sizes/font_size = 16
+text = "+3
+"
+horizontal_alignment = 1
+
+[node name="upgradeIcon" type="TextureRect" parent="card"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.406
+anchor_right = 0.5
+anchor_bottom = 0.406
+offset_left = -10.0
+offset_top = -9.984
+offset_right = 30.0
+offset_bottom = 30.016
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_v5cxy")
+
+[node name="upgradeDef" type="Label" parent="card/upgradeIcon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.425
+anchor_right = 0.5
+anchor_bottom = 1.425
+offset_left = -35.0
+offset_right = 141.0
+offset_bottom = 16.0
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/font = ExtResource("2_kdtah")
+theme_override_font_sizes/font_size = 16
+text = "for turning
+"
+horizontal_alignment = 1

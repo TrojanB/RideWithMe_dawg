@@ -4,4 +4,5 @@
 
 [node name="BakcgroundMusic" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_btqgn")
+volume_db = -80.0
 autoplay = true

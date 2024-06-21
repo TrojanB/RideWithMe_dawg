@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce2y4o5o2f34x"
-path="res://.godot/imported/garageIcon.png-d3b725369f6090f0eeacf957717998a4.ctex"
+uid="uid://hdenernajqnx"
+path="res://.godot/imported/pauseIcon.png-0cae8a21bc53bde2ad22098e58cf2b97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/garageIcon.png"
-dest_files=["res://.godot/imported/garageIcon.png-d3b725369f6090f0eeacf957717998a4.ctex"]
+source_file="res://Textures/Icons/pauseIcon.png"
+dest_files=["res://.godot/imported/pauseIcon.png-0cae8a21bc53bde2ad22098e58cf2b97.ctex"]
 
 [params]
 

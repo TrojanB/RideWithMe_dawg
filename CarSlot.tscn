@@ -1,14 +1,15 @@
-[gd_scene load_steps=38 format=3 uid="uid://cxw5cllo4rcae"]
+[gd_scene load_steps=40 format=3 uid="uid://cxw5cllo4rcae"]
 
 [ext_resource type="Texture2D" uid="uid://c3vgcfn1kuxgc" path="res://PlayerCars/LUXURY_GAME/Black_LUXURY_CLEAN_All_000-sheet.png" id="1_8atol"]
-[ext_resource type="Texture2D" uid="uid://djoa44w63fk06" path="res://Textures/heart.png" id="1_8817i"]
+[ext_resource type="Texture2D" uid="uid://djoa44w63fk06" path="res://Textures/Icons/heartIcon.png" id="1_8817i"]
 [ext_resource type="Script" path="res://scripts/CarSlot.gd" id="1_ncxy4"]
 [ext_resource type="Texture2D" uid="uid://bj76w33q01sva" path="res://Backgrounds/sun.png" id="1_yx3t4"]
 [ext_resource type="Texture2D" uid="uid://dbfu1yb4sx6e" path="res://PlayerCars/SPORT_GAME/Red_SPORT_CLEAN_All_000-sheet.png" id="2_830o8"]
 [ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="3_kmg6p"]
 [ext_resource type="Texture2D" uid="uid://b88wpt6xejoua" path="res://Textures/coin1_16x16.png" id="4_nqp76"]
-[ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/speedIcon.png" id="7_k56i6"]
+[ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/Icons/speedIcon.png" id="7_k56i6"]
 [ext_resource type="Script" path="res://EquipButton.gd" id="8_yrutw"]
+[ext_resource type="Texture2D" uid="uid://c7gyc3kpoaae2" path="res://Textures/Icons/SteeringWheelIcon.png" id="10_18ug5"]
 
 [sub_resource type="Animation" id="Animation_2hyma"]
 length = 0.001
@@ -260,6 +261,15 @@ Button/colors/font_outline_color = Color(0.0313726, 0.392157, 0.65098, 1)
 Button/constants/outline_size = 10
 Button/styles/normal = SubResource("StyleBoxFlat_crg0i")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_br5og"]
+bg_color = Color(0.866268, 0.714416, 0.0982224, 1)
+border_width_bottom = 15
+border_color = Color(0.788185, 0.416157, 0.0877121, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [sub_resource type="Shader" id="Shader_lf6a5"]
 code = "shader_type canvas_item;
 
@@ -375,33 +385,48 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 theme = SubResource("Theme_fc17j")
+theme_override_font_sizes/font_size = 48
 text = "SELECT"
+script = ExtResource("8_yrutw")
+
+[node name="EditButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -55.6
+offset_top = -90.0
+offset_right = 294.4
+offset_bottom = 10.0
+scale = Vector2(0.2, 0.2)
+theme = SubResource("Theme_fc17j")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_br5og")
+text = "UPGRADE
+"
 script = ExtResource("8_yrutw")
 
 [node name="Lifes" type="Label" parent="."]
 z_index = 2
 layout_mode = 0
-offset_left = -55.6
-offset_top = 37.6
-offset_right = -27.6
-offset_bottom = 60.6
+offset_left = -80.0
+offset_top = 40.0
+offset_right = -52.0
+offset_bottom = 63.0
 theme_override_fonts/font = ExtResource("3_kmg6p")
 text = "2
 "
 horizontal_alignment = 1
 
 [node name="HeartIcon" type="Sprite2D" parent="Lifes"]
-position = Vector2(-6, 6.8)
-scale = Vector2(0.1, 0.1)
+position = Vector2(-7, 5)
+scale = Vector2(1.5, 1.3)
 texture = ExtResource("1_8817i")
 
 [node name="Speed" type="Label" parent="."]
 z_index = 2
 layout_mode = 0
-offset_left = 10.8
-offset_top = 37.6
-offset_right = 38.8
-offset_bottom = 60.6
+offset_left = -20.0
+offset_top = 40.0
+offset_right = 8.0
+offset_bottom = 63.0
 theme_override_fonts/font = ExtResource("3_kmg6p")
 text = "2
 "
@@ -410,16 +435,34 @@ horizontal_alignment = 1
 [node name="SpeedIcon2" type="Sprite2D" parent="Speed"]
 self_modulate = Color(0.976471, 0.992157, 0.619608, 1)
 material = SubResource("ShaderMaterial_b4ocp")
-position = Vector2(-17.6, 5.6)
-scale = Vector2(0.05, 0.05)
+position = Vector2(-20, 5.6)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("7_k56i6")
 
 [node name="SpeedIcon" type="Sprite2D" parent="Speed"]
 self_modulate = Color(0.976471, 0.992157, 0.619608, 0.992157)
 material = SubResource("ShaderMaterial_b4ocp")
 position = Vector2(-4, 5.6)
-scale = Vector2(0.05, 0.05)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("7_k56i6")
+
+[node name="Handling" type="Label" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = 30.0
+offset_top = 40.0
+offset_right = 58.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("3_kmg6p")
+text = "2
+"
+horizontal_alignment = 1
+
+[node name="SteeringWheelIcon" type="Sprite2D" parent="Handling"]
+position = Vector2(-8, 5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_18ug5")
 
 [connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="SelectButton" to="SelectButton" method="_on_pressed"]
+[connection signal="pressed" from="EditButton" to="EditButton" method="_on_pressed"]

@@ -1,0 +1,210 @@
+[gd_scene load_steps=17 format=3 uid="uid://43sh3df34ob1"]
+
+[ext_resource type="Script" path="res://loot_boxes.gd" id="1_8tmjx"]
+[ext_resource type="Texture2D" uid="uid://bp71trwdqnf27" path="res://Backgrounds/lootboxBG.png" id="1_mfij3"]
+[ext_resource type="Texture2D" uid="uid://io2lgei8jnnl" path="res://Backgrounds/palm-tree.png" id="2_abftc"]
+[ext_resource type="Texture2D" uid="uid://c7gyc3kpoaae2" path="res://Textures/Icons/SteeringWheelIcon.png" id="2_ho2ud"]
+[ext_resource type="Texture2D" uid="uid://b5rwx44ytrafj" path="res://Textures/lootbox1.png" id="3_42int"]
+[ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/Icons/speedIcon.png" id="3_pb7dl"]
+[ext_resource type="Texture2D" uid="uid://djoa44w63fk06" path="res://Textures/Icons/heartIcon.png" id="4_wcxt5"]
+[ext_resource type="Texture2D" uid="uid://otlrsjcac6t1" path="res://Textures/lootbox2.png" id="4_xgfvk"]
+[ext_resource type="PackedScene" uid="uid://c1x41idvbmvvv" path="res://scenes/card_pattern.tscn" id="5_32g4x"]
+
+[sub_resource type="Animation" id="Animation_vgu6g"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-140, -100), Vector2(-140, -95)]
+}
+
+[sub_resource type="Animation" id="Animation_ymusy"]
+resource_name = "openLootBox"
+length = 1.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.174533, -0.174533, 0.174533, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture_normal")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_xgfvk")]
+}
+
+[sub_resource type="Animation" id="Animation_0nvb0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u4pd8"]
+_data = {
+"RESET": SubResource("Animation_0nvb0"),
+"idle": SubResource("Animation_vgu6g"),
+"openLootBox": SubResource("Animation_ymusy")
+}
+
+[sub_resource type="Animation" id="Animation_qbg1q"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-142, -213), Vector2(-142, -230)]
+}
+
+[sub_resource type="Animation" id="Animation_qbc51"]
+resource_name = "popUp"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7haik"]
+_data = {
+"idle": SubResource("Animation_qbg1q"),
+"popUp": SubResource("Animation_qbc51")
+}
+
+[node name="LootBoxes" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8tmjx")
+turningTexture = ExtResource("2_ho2ud")
+speedTexture = ExtResource("3_pb7dl")
+lifesTexture = ExtResource("4_wcxt5")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mfij3")
+
+[node name="palmTree" type="TextureRect" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.655
+anchor_top = 0.54
+anchor_right = 0.655
+anchor_bottom = 0.54
+offset_left = 0.439941
+offset_top = -149.92
+offset_right = 133.44
+offset_bottom = 58.08
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3, 3)
+texture = ExtResource("2_abftc")
+
+[node name="palmTree2" type="TextureRect" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.54
+anchor_bottom = 0.54
+offset_top = -149.92
+offset_right = 133.0
+offset_bottom = 58.08
+scale = Vector2(3, 3)
+texture = ExtResource("2_abftc")
+flip_h = true
+
+[node name="LootBox" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="LootBox"]
+position = Vector2(-140, -100)
+scale = Vector2(10, 10.5)
+texture_normal = ExtResource("3_42int")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LootBox/TouchScreenButton"]
+libraries = {
+"": SubResource("AnimationLibrary_u4pd8")
+}
+autoplay = "idle"
+
+[node name="CardPattern" parent="LootBox" instance=ExtResource("5_32g4x")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.737
+anchor_bottom = 0.737
+offset_left = -182.0
+offset_top = -242.48
+offset_right = 130.0
+offset_bottom = 242.52
+
+[node name="AnimationPlayerCard" type="AnimationPlayer" parent="LootBox/CardPattern"]
+libraries = {
+"": SubResource("AnimationLibrary_7haik")
+}
+
+[connection signal="pressed" from="LootBox/TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

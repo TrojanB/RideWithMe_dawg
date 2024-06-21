@@ -1,11 +1,20 @@
 extends CharacterBody2D
 
 var speeds = [900, 1800, 2700, 3600, 4500]
+var speedMultipliers = [1, 1, 1.5 ,2 , 2.5, 3]
+var speedMultiplier = speedMultipliers[Menu.speedMultiplier]
+
+var handlings = [350, 350, 450, 550, 700]
+var handling = handlings[Menu.handling]
+
+var lifes = Menu.lifes
+var is_immortal = false
+
 var intervals = [20,40,80,120]
 var index = 0
 var timeCounter:float = 0
 
-@export var current_speed:float = speeds[0]
+@export var current_speed:float = speeds[0] * speedMultiplier
 var previous_speed:float
 
 signal sendSpeedToScore(speed:float)
@@ -19,9 +28,6 @@ signal player_hit(lifes:int)
 
 var start_turning_up = false
 var start_turning_down = false
-var turningForce = 350
-var lifes = Menu.lifes
-var is_immortal = false
 
 signal playerHasLost(playerHasLost:bool)
 var playerLost = false
@@ -35,11 +41,11 @@ func _ready():
 func _physics_process(delta):
 	if Input.get_action_strength("up") and position.y > 96:  #go up
 		animation_up()
-		position -= Vector2(0,turningForce) * delta
+		position -= Vector2(0,handling) * delta
 		
 	elif Input.get_action_strength("down") and position.y < 452:#go down
 		animation_down()
-		position += Vector2(0,turningForce) * delta
+		position += Vector2(0,handling) * delta
 		
 	else:                                  #go straight
 		animation.play("idle")
@@ -49,13 +55,14 @@ func _physics_process(delta):
 	if current_speed != previous_speed: #wysyla predkosc do Sprite'ow drogi by ta "ruszala sie" w wyslanej predkosci lmao
 		speed_changed.emit(current_speed)
 		previous_speed = current_speed
+
 func _process(delta):
 	sendSpeedToScore.emit(round(current_speed/1000))
 	if index < len(intervals) and not playerLost:
 		timeCounter += delta
 		if timeCounter >= intervals[index]:
 			index+=1
-			smooth_speed_change(speeds[index], delta)
+			smooth_speed_change(speeds[index] * speedMultiplier, delta)
 
 func animation_up():
 	if start_turning_up == false:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4uux1o60jpq6"
-path="res://.godot/imported/playIcon.png-7e2d3e1f215a4a56dbb8c70ab7173599.ctex"
+uid="uid://b5rwx44ytrafj"
+path="res://.godot/imported/lootbox1.png-359bfb291e47412b6ea7ccb863c2df43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/playIcon.png"
-dest_files=["res://.godot/imported/playIcon.png-7e2d3e1f215a4a56dbb8c70ab7173599.ctex"]
+source_file="res://Textures/lootbox1.png"
+dest_files=["res://.godot/imported/lootbox1.png-359bfb291e47412b6ea7ccb863c2df43.ctex"]
 
 [params]
 

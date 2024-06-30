@@ -9,9 +9,8 @@ extends Control
 @onready var upgradeDef =  $LootBox/CardPattern/card/upgradeIcon/upgradeDef
 @onready var animation_player_card = $LootBox/CardPattern/AnimationPlayerCard
 
-@export var turningTexture : Texture
-@export var speedTexture : Texture
-@export var lifesTexture : Texture
+
+var tab = [10,20,30,50,80,90,100,150,130]
 
 enum rarities {
 	COMMON,
@@ -20,40 +19,41 @@ enum rarities {
 	LEGENDARY
 }
 
-var upgrades = [1,2,3,4]
-var upgradeTypes = ["turning", "speed", "lifes"]
-var rarityColors = [Color(0.483, 0.751, 0.231), Color(0.292, 0.717, 0.891), Color(0.685, 0.291, 0.833), Color(0.929, 0.708, 0.161)]
-
 func _on_touch_screen_button_pressed():
-	animation_player.play("openLootBox")
-	animation_player_card.play("popUp")
-	createLoot()
+	if Menu.lootboxes > 0:
+		Menu.lootboxes -= 1
+		animation_player.play("openLootBox")
+		animation_player_card.play("popUp")
+		createLoot()
+	else:
+		get_tree().change_scene_to_file("res://scenes/Menu.tscn")
 
 func createLoot():
-	card_pattern.visible = true
-	var card = UpgradeCard.new()
+	card_pattern.get_parent().visible = true
 	var rand1 = randi_range(1,100)
 	var rarity : int 
-	var upgradeType = randi() % upgradeTypes.size()
+	var upgradeType = randi() % Menu.upgradeTypes.size()
 	
-	if rand1 <= 60 : rarity = 0
-	elif rand1 > 60 and rand1 <= 80 : rarity = 1
-	elif rand1 > 80 and rand1 <=90 : rarity = 2
+	if rand1 <= 55 : rarity = 0
+	elif rand1 > 55 and rand1 <= 80 : rarity = 1
+	elif rand1 > 80 and rand1 <=95 : rarity = 2
 	else : rarity = 3
 	
-	card.upgrade = upgrades[rarity] + 1
-	card.upgradeType = upgradeTypes[upgradeType]
+	var card = UpgradeCard.new()
+	card.upgrade = Menu.upgrades[rarity] + 1
+	card.upgradeType = Menu.upgradeTypes[upgradeType]
+	Menu.cards.append(card)
 	
-	card_pattern.self_modulate = rarityColors[rarity]
+	card_pattern.self_modulate = Menu.rarityColors[rarity]
 	upgradeLabel.text = "+" + str(rarity + 1)
 	
 	match upgradeType:
 		0: 
-			upgradeTexture.texture = turningTexture
+			upgradeTexture.texture = Menu.turningTexture
 			upgradeDef.text = "for turning"
 		1: 
-			upgradeTexture.texture = speedTexture
+			upgradeTexture.texture = Menu.speedTexture
 			upgradeDef.text = "for speed"
 		2: 
-			upgradeTexture.texture = lifesTexture
+			upgradeTexture.texture = Menu.lifesTexture
 			upgradeDef.text = "lifes"

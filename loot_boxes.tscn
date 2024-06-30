@@ -1,14 +1,26 @@
-[gd_scene load_steps=17 format=3 uid="uid://43sh3df34ob1"]
+[gd_scene load_steps=14 format=3 uid="uid://43sh3df34ob1"]
 
 [ext_resource type="Script" path="res://loot_boxes.gd" id="1_8tmjx"]
 [ext_resource type="Texture2D" uid="uid://bp71trwdqnf27" path="res://Backgrounds/lootboxBG.png" id="1_mfij3"]
 [ext_resource type="Texture2D" uid="uid://io2lgei8jnnl" path="res://Backgrounds/palm-tree.png" id="2_abftc"]
-[ext_resource type="Texture2D" uid="uid://c7gyc3kpoaae2" path="res://Textures/Icons/SteeringWheelIcon.png" id="2_ho2ud"]
 [ext_resource type="Texture2D" uid="uid://b5rwx44ytrafj" path="res://Textures/lootbox1.png" id="3_42int"]
-[ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/Icons/speedIcon.png" id="3_pb7dl"]
-[ext_resource type="Texture2D" uid="uid://djoa44w63fk06" path="res://Textures/Icons/heartIcon.png" id="4_wcxt5"]
 [ext_resource type="Texture2D" uid="uid://otlrsjcac6t1" path="res://Textures/lootbox2.png" id="4_xgfvk"]
 [ext_resource type="PackedScene" uid="uid://c1x41idvbmvvv" path="res://scenes/card_pattern.tscn" id="5_32g4x"]
+
+[sub_resource type="Animation" id="Animation_0nvb0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_vgu6g"]
 resource_name = "idle"
@@ -54,21 +66,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("4_xgfvk")]
-}
-
-[sub_resource type="Animation" id="Animation_0nvb0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u4pd8"]
@@ -125,9 +122,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8tmjx")
-turningTexture = ExtResource("2_ho2ud")
-speedTexture = ExtResource("3_pb7dl")
-lifesTexture = ExtResource("4_wcxt5")
 
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -192,6 +186,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="CardPattern" parent="LootBox" instance=ExtResource("5_32g4x")]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0

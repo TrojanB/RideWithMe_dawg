@@ -6,7 +6,9 @@ func _ready():
 	for car_slot in get_children():
 		if car_slot.has_node("SelectButton"):
 			var select_button = car_slot.get_node("SelectButton")
+			var upgrade_button = car_slot.get_node("UpgadeButton")
 			select_button.connect("pressed", Callable(self, "_on_SelectButton_pressed").bind(car_slot))
+			upgrade_button.connect("pressed", Callable(self, "_on_UpgradeButton_pressed").bind(car_slot))
 			car_array.append(car_slot)
 
 func _process(delta):
@@ -37,8 +39,10 @@ func _on_SelectButton_pressed(car_slot):
 				SelectButton = other_car_slot.get_node("SelectButton")
 				if SelectButton:
 					changeButton(other_car_slot, false)
-	
-	
+
+func _on_UpgradeButton_pressed(car_slot):
+	get_tree().change_scene_to_file("res://scenes/upgrade_scene.tscn")
+
 func changeButton(car_slot, is_selected):
 	var select_button = car_slot.get_node("SelectButton")
 	if select_button:

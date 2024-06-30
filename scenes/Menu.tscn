@@ -1,9 +1,12 @@
-[gd_scene load_steps=47 format=3 uid="uid://cus8fcubhxhco"]
+[gd_scene load_steps=53 format=3 uid="uid://cus8fcubhxhco"]
 
 [ext_resource type="Script" path="res://scenes/Menu.gd" id="1_vb6i4"]
 [ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="2_5co7e"]
+[ext_resource type="Texture2D" uid="uid://c7gyc3kpoaae2" path="res://Textures/Icons/SteeringWheelIcon.png" id="2_j833x"]
 [ext_resource type="Texture2D" uid="uid://cgebisvfxsl0t" path="res://Backgrounds/palms.png" id="3_0yd1u"]
 [ext_resource type="Script" path="res://scenes/HighScore.gd" id="3_3wllv"]
+[ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/Icons/speedIcon.png" id="3_f5ylw"]
+[ext_resource type="Texture2D" uid="uid://djoa44w63fk06" path="res://Textures/Icons/heartIcon.png" id="4_03x3d"]
 [ext_resource type="Theme" uid="uid://bt47ky8s6sja5" path="res://Backgrounds/buttonTheme.tres" id="5_cohfj"]
 [ext_resource type="Script" path="res://scenes/MoneyMenu.gd" id="5_hdubp"]
 [ext_resource type="Script" path="res://PlayButton.gd" id="6_ynor3"]
@@ -17,6 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://b88wpt6xejoua" path="res://Textures/coin1_16x16.png" id="14_g023j"]
 [ext_resource type="Texture2D" uid="uid://cfmb02oh6eou" path="res://Textures/diamond-sh.png" id="14_hc1ki"]
 [ext_resource type="PackedScene" uid="uid://d3tg7lih1hifd" path="res://settings.tscn" id="15_7l1tu"]
+[ext_resource type="Texture2D" uid="uid://b5rwx44ytrafj" path="res://Textures/lootbox1.png" id="18_in0fa"]
+[ext_resource type="Theme" uid="uid://b4ohoegmxa8ud" path="res://CarSlotButton.tres" id="19_dp2yc"]
+[ext_resource type="Script" path="res://scenes/BuyLootBoxButton.gd" id="20_y6g2h"]
 
 [sub_resource type="Animation" id="Animation_x5y38"]
 length = 0.001
@@ -274,6 +280,9 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 script = ExtResource("1_vb6i4")
+turningTexture = ExtResource("2_j833x")
+speedTexture = ExtResource("3_f5ylw")
+lifesTexture = ExtResource("4_03x3d")
 
 [node name="Title" type="Label" parent="."]
 z_index = 10
@@ -296,10 +305,10 @@ horizontal_alignment = 1
 z_index = 10
 texture_filter = 1
 layout_mode = 0
-offset_left = 305.0
-offset_top = 498.5
-offset_right = 569.0
-offset_bottom = 549.5
+offset_left = 19.0
+offset_top = 452.0
+offset_right = 283.0
+offset_bottom = 503.0
 scale = Vector2(0.8, 0.8)
 theme_override_colors/font_color = Color(1, 0.65098, 0.141176, 1)
 theme_override_colors/font_shadow_color = Color(0.894118, 0.760784, 0.203922, 1)
@@ -536,6 +545,46 @@ texture = ExtResource("3_0yd1u")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("7_ea8tl")]
 
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 10
+layout_mode = 0
+offset_left = 348.5
+offset_top = 506.5
+offset_right = 389.5
+offset_bottom = 551.5
+scale = Vector2(3, 3)
+texture = ExtResource("18_in0fa")
+
+[node name="BuyButton" type="Button" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 1.148
+anchor_right = 0.45
+anchor_bottom = 1.148
+offset_left = -23.45
+offset_top = -9.41
+offset_right = 223.55
+offset_bottom = 84.59
+scale = Vector2(0.2, 0.2)
+theme = ExtResource("19_dp2yc")
+theme_override_font_sizes/font_size = 32
+text = "300"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("20_y6g2h")
+
+[node name="MoneyIcon2" type="AnimatedSprite2D" parent="TextureRect/BuyButton"]
+position = Vector2(207.5, 40)
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_5b262")
+animation = &"new_animation"
+autoplay = "new_animation"
+
 [connection signal="pressed" from="PlayButton2" to="PlayButton2" method="_on_pressed"]
 [connection signal="pressed" from="GarageButton" to="GarageButton" method="_on_pressed"]
+[connection signal="button_down" from="SettingsButton" to="SettingsButton" method="_on_button_down"]
+[connection signal="button_up" from="SettingsButton" to="SettingsButton" method="_on_button_up"]
 [connection signal="pressed" from="SettingsButton" to="SettingsButton" method="_on_pressed"]
+[connection signal="pressed" from="TextureRect/BuyButton" to="TextureRect/BuyButton" method="_on_pressed"]

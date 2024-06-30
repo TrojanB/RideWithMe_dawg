@@ -2,12 +2,11 @@ extends CharacterBody2D
 
 var speeds = [900, 1800, 2700, 3600, 4500]
 var speedMultipliers = [1, 1, 1.5 ,2 , 2.5, 3]
-var speedMultiplier = speedMultipliers[Menu.speedMultiplier]
+var handlings = [250, 350, 450, 550, 700]
 
-var handlings = [350, 350, 450, 550, 700]
-var handling = handlings[Menu.handling]
-
-var lifes = Menu.lifes
+var speedMultiplier = speedMultipliers[Menu.PlayerCar.speed]
+var handling = handlings[Menu.PlayerCar.handling]
+var lifes = Menu.PlayerCar.lifes
 var is_immortal = false
 
 var intervals = [20,40,80,120]
@@ -34,8 +33,8 @@ var playerLost = false
 
 func _ready():
 	speed_changed.emit(current_speed)
-	if Menu.carTexture != null:
-		$Sprite2D.texture = Menu.carTexture
+	if Menu.PlayerCar.carTexture:
+		$Sprite2D.texture = Menu.PlayerCar.carTexture
 	$Sprite2D.frame = 0
 
 func _physics_process(delta):

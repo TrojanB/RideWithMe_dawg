@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ycja0vw0bdsl"]
+
+[ext_resource type="Script" path="res://scripts/drag_card.gd" id="1_nbvwy"]
+[ext_resource type="PackedScene" uid="uid://c1x41idvbmvvv" path="res://scenes/card_pattern.tscn" id="2_igxqq"]
+
+[node name="Button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_nbvwy")
+
+[node name="CardPattern" parent="." instance=ExtResource("2_igxqq")]
+layout_mode = 1

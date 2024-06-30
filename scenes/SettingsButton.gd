@@ -8,4 +8,4 @@ func _ready():
 
 
 func _on_pressed():
-	settings.visible = true
+	settings.visible = false

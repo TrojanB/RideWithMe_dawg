@@ -19,20 +19,25 @@ extends Control
 @onready var select_button = $SelectButton
 @onready var car_srpite = $CarSrpite
 
-signal change_isSelected()
+
+
+var car = Car.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	select_button.connect("pressed", Callable(self, "_on_Button_pressed"))
+	car.name = car_name
+	car.lifes = lifes
+	car.speed = speed
+	car.handling = handling
+	car.carTexture = txt
 	
 	car_nameLabel.text = car_name
-	
 	lifesLabel.text = str(lifes)
 	speedLabel.text = str(speed)
 	handlingLabel.text = str(handling)
-	
 	buy_button.text = str(price)
 	car_srpite.texture = txt
+	
 	if isBought:
 		buy_button.visible = false
 		select_button.visible = true
@@ -41,7 +46,8 @@ func _ready():
 		select_button.visible = false
 
 func _on_Button_pressed():
-	emit_signal("change_isSelected")
+	if isBought:
+		Menu.PlayerCar = car
 
 
 func _on_buy_button_pressed():
@@ -50,3 +56,13 @@ func _on_buy_button_pressed():
 		isBought = true
 		buy_button.visible = false
 		select_button.visible = true
+
+
+func _on_select_button_pressed():
+	if isBought:
+		Menu.PlayerCar = car
+
+
+func _on_upgade_button_pressed():
+	if isBought:
+		Menu.UpgradeCar = car

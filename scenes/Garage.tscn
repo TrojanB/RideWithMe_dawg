@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8dvcjuyxd6pq"]
+[gd_scene load_steps=16 format=3 uid="uid://c8dvcjuyxd6pq"]
 
 [ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/Icons/speedIcon.png" id="1_e766l"]
-[ext_resource type="Shader" path="res://scenes/Garage.gdshader" id="1_fh2bu"]
 [ext_resource type="Texture2D" uid="uid://b2ye16x43f1i" path="res://Backgrounds/garageBg.png" id="2_144mf"]
 [ext_resource type="Script" path="res://scenes/CarScrollingFrame.gd" id="3_3fsl3"]
 [ext_resource type="PackedScene" uid="uid://cxw5cllo4rcae" path="res://CarSlot.tscn" id="3_nyd7k"]
@@ -14,8 +13,6 @@
 [ext_resource type="Script" path="res://scenes/GarageToMenuButton.gd" id="10_0ejc2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i8wb6"]
-shader = ExtResource("1_fh2bu")
-shader_parameter/speed = 0.2
 
 [sub_resource type="Animation" id="Animation_ph5lr"]
 length = 0.001
@@ -159,5 +156,6 @@ icon = ExtResource("1_e766l")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("10_0ejc2")
+scene = "res://scenes/Menu.tscn"
 
 [connection signal="pressed" from="GarageToMenuButton" to="GarageToMenuButton" method="_on_pressed"]

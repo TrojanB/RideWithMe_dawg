@@ -10,7 +10,6 @@ var upgradeType : String
 @onready var upgrade_icon = $card/upgradeIcon
 
 func _ready():
-	print(card_index)
 	update_card_appearance()
 
 func update_card_appearance():
@@ -26,7 +25,3 @@ func update_card_appearance():
 		"lifes": 
 			upgrade_icon.texture = Menu.lifesTexture
 			upgrade_def.text = "lifes"
-
-func _get_drag_data(position):
-	var drag_data = card_index
-	return drag_data

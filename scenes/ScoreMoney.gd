@@ -16,3 +16,8 @@ func ui_update():
 		length+=1
 		money_icon.position.x += 18
 	animation_player.play("collectedCoin")
+
+
+func _on_player_player_has_destroyed_car():
+	money+=1
+	ui_update()

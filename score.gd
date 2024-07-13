@@ -21,3 +21,8 @@ func _on_player_send_speed_to_score(speed):
 			emit_signal("addCoin")
 			
 		text = "SCORE: " + str(score)
+
+
+func _on_player_player_has_lost(playerHasLost):
+	if Menu.highscore < score:
+		Menu.highscore = score

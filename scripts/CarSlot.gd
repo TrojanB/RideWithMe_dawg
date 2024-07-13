@@ -17,19 +17,12 @@ extends Control
 
 @onready var buy_button = $BuyButton
 @onready var select_button = $SelectButton
+@onready var upgrade_button = $UpgradeButton
+
 @onready var car_srpite = $CarSrpite
-
-
-
-var car = Car.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	car.name = car_name
-	car.lifes = lifes
-	car.speed = speed
-	car.handling = handling
-	car.carTexture = txt
 	
 	car_nameLabel.text = car_name
 	lifesLabel.text = str(lifes)
@@ -41,14 +34,11 @@ func _ready():
 	if isBought:
 		buy_button.visible = false
 		select_button.visible = true
+		upgrade_button.visible = true
 	else:
 		buy_button.visible = true
 		select_button.visible = false
-
-func _on_Button_pressed():
-	if isBought:
-		Menu.PlayerCar = car
-
+		upgrade_button.visible = false
 
 func _on_buy_button_pressed():
 	if Menu.money >= price:
@@ -59,10 +49,11 @@ func _on_buy_button_pressed():
 
 
 func _on_select_button_pressed():
-	if isBought:
-		Menu.PlayerCar = car
+	if car_name != Menu.PlayerCar.name:
+		var car = Menu._find_car(car_name, Menu.owned_cars)
+		if car:
+			Menu.PlayerCar = car
+			select_button.text = "SELECTED"
+		else:
+			print("ERROR, COULDNT ASIGN CAR")
 
-
-func _on_upgade_button_pressed():
-	if isBought:
-		Menu.UpgradeCar = car

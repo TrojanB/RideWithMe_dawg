@@ -81,4 +81,3 @@ func randomize_lane(posY):
 
 func destroy_car():
 	$".".queue_free()
-	print("DESTROYED")

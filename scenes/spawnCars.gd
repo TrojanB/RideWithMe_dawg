@@ -4,6 +4,7 @@ var rng = RandomNumberGenerator.new()
 var hasPlayerLost = false
 @onready var gameOverScreen = $CanvasLayer/Control
 @onready var transitionPlayer = $Sprite2D/AnimationPlayer
+@onready var timer = $CanvasLayer/HBoxContainer/UI/DestroyTime/DestroyTimer
 var transition = "PixelOut"
 
 var cars = [
@@ -26,21 +27,30 @@ var lanesPositionsY = [  #od gory do dolu
 ]
 
 var spawnDelays = [5,4,3,2.5, 1.5, 1.25, 1.2]
+var destroySpawnDelays = [3,3.5,4.5,5,6,7,8]
 var index = 0
 var timeCounter = 0
 
+@onready var game_mode = Menu.gameMode
+
 func _ready():
-	spawn_car()
-	spawn_car()
-	spawn_car()
+	if game_mode == Menu.gameModes.NORMAL:
+		_normal_mode()
+	else:
+		_destroy_mode()
 	
 func _process(delta):
 	timeCounter += delta
-	if timeCounter >= spawnDelays[index] and not hasPlayerLost:
-		spawn_car()
-		spawn_car()
-		spawn_car()
-		timeCounter = 0
+	if game_mode == Menu.gameModes.NORMAL:
+		if timeCounter >= spawnDelays[index] and not hasPlayerLost:
+			spawn_car()
+			spawn_car()
+			spawn_car()
+			timeCounter = 0
+	else:
+		if timeCounter >= destroySpawnDelays[index] and not hasPlayerLost:
+			spawn_car()
+			timeCounter = 0
 		
 func spawn_car():
 	var car = cars[rng.randi_range(0, len(cars)-1)].instantiate()
@@ -51,12 +61,25 @@ func spawn_car():
 
 
 func _on_player_player_has_lost(playerHasLost):
-	hasPlayerLost = playerHasLost
+	hasPlayerLost = true
 	gameOverScreen.visible = true
+	timer.stop()
 
 
 func _on_player_speed_changed(speed):
-	if index+1 <= len(spawnDelays) - 1 and not hasPlayerLost:
-		index+=1
-	print("speedChanged " + str(speed))
+	if game_mode == Menu.gameModes.NORMAL:
+		if index+1 < len(spawnDelays) and not hasPlayerLost:
+			index+=1
+	else:
+		if index+1 <=len(destroySpawnDelays)  and not hasPlayerLost:
+			index+=1
+
+func _normal_mode():
+	spawn_car()
+	spawn_car()
+	spawn_car()
+
+func _destroy_mode():
+	timer.start()
+
 

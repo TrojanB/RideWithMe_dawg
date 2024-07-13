@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cv4403e80efw1"]
+[gd_scene load_steps=26 format=3 uid="uid://cv4403e80efw1"]
 
 [ext_resource type="Script" path="res://scenes/spawnCars.gd" id="1_4y6k3"]
 [ext_resource type="PackedScene" uid="uid://q8v04iswc7b" path="res://scenes/player.tscn" id="2_m8xtx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c0vxtaghy7271" path="res://Backgrounds/road.png" id="2_pcuta"]
 [ext_resource type="Script" path="res://scenes/RoadMonig.gd" id="3_gltqv"]
 [ext_resource type="FontFile" uid="uid://8gank5pbvpbg" path="res://Fonts/BadMofo.ttf" id="4_4wdc5"]
+[ext_resource type="FontFile" uid="uid://do8s0h3hbds6y" path="res://scenes/Franchise.ttf" id="4_g6npy"]
 [ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="5_01iqc"]
 [ext_resource type="Texture2D" uid="uid://cy1lne4x00apm" path="res://SUPERCAR/arrowFinaly.png" id="5_uv5au"]
 [ext_resource type="PackedScene" uid="uid://btl5rmr88bgbv" path="res://scenes/score.tscn" id="6_52uox"]
@@ -13,14 +14,12 @@
 [ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="7_gbhxh"]
 [ext_resource type="Script" path="res://scenes/Backgrounds.gd" id="7_j3kr5"]
 [ext_resource type="Texture2D" uid="uid://dhsuhqgl7eass" path="res://Backgrounds/back.png" id="7_yn3ak"]
-[ext_resource type="FontFile" uid="uid://dcbjk8peyd5c7" path="res://Fonts/FFFFORWA.TTF" id="8_ssxae"]
 [ext_resource type="Script" path="res://scenes/ScoreMoney.gd" id="8_unxi0"]
 [ext_resource type="Texture2D" uid="uid://djoa44w63fk06" path="res://Textures/Icons/heartIcon.png" id="10_2gycy"]
 [ext_resource type="Script" path="res://scenes/Lifes.gd" id="10_olenw"]
 [ext_resource type="Script" path="res://scenes/time.gd" id="10_wxlwk"]
 [ext_resource type="PackedScene" uid="uid://642erslk4ylp" path="res://scenes/game_over.tscn" id="11_pyprd"]
-[ext_resource type="Script" path="res://scripts/DestroyTimeLabel.gd" id="12_elrhw"]
-[ext_resource type="Script" path="res://scripts/Camera.gd" id="15_equ1l"]
+[ext_resource type="PackedScene" uid="uid://df6faxuclij8m" path="res://loading.tscn" id="12_3qp1a"]
 [ext_resource type="AudioStream" uid="uid://d3ur3vfmj8rcd" path="res://music/videogame-death-sound-43894.mp3" id="15_g0cl5"]
 [ext_resource type="Script" path="res://scenes/GameOverSound.gd" id="16_gx0ym"]
 
@@ -37,18 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(5, 5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.5, 0.5)]
 }
 
 [sub_resource type="Animation" id="Animation_efxbl"]
@@ -72,82 +59,6 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_d470u"),
 "collectedCoin": SubResource("Animation_efxbl")
-}
-
-[sub_resource type="Animation" id="Animation_ggslp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_5462x"]
-resource_name = "time_is_running_out"
-length = 0.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.85098, 0.117647, 0.172549, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1wkj7"]
-_data = {
-"RESET": SubResource("Animation_ggslp"),
-"time_is_running_out": SubResource("Animation_5462x")
-}
-
-[sub_resource type="Animation" id="Animation_e0jro"]
-resource_name = "shake"
-length = 0.25
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-5, -10), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_pcxsy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lwo1q"]
-_data = {
-"RESET": SubResource("Animation_pcxsy"),
-"shake": SubResource("Animation_e0jro")
 }
 
 [node name="level" type="Node2D"]
@@ -217,21 +128,20 @@ text = "SCORE: 999999
 "
 
 [node name="Time" parent="CanvasLayer/HBoxContainer/UI" instance=ExtResource("6_52uox")]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -279.0
-offset_top = 83.0
+offset_top = 80.0
 offset_right = 279.0
 offset_bottom = 153.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.501961, 0.2, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0.2, 0, 1, 1)
-theme_override_fonts/font = ExtResource("8_ssxae")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("4_g6npy")
+theme_override_font_sizes/font_size = 50
 text = "TIME: 999999"
 script = ExtResource("10_wxlwk")
 
@@ -262,33 +172,6 @@ hframes = 16
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/HBoxContainer/UI/Money/MoneyIcon"]
 libraries = {
 "": SubResource("AnimationLibrary_rdl03")
-}
-
-[node name="DestroyTime" type="Label" parent="CanvasLayer/HBoxContainer/UI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -211.0
-offset_top = 208.0
-offset_right = 216.0
-offset_bottom = 296.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("8_ssxae")
-theme_override_font_sizes/font_size = 64
-text = "99"
-horizontal_alignment = 1
-script = ExtResource("12_elrhw")
-
-[node name="DestroyTimer" type="Timer" parent="CanvasLayer/HBoxContainer/UI/DestroyTime"]
-wait_time = 31.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/HBoxContainer/UI/DestroyTime"]
-libraries = {
-"": SubResource("AnimationLibrary_1wkj7")
 }
 
 [node name="Up" type="TouchScreenButton" parent="CanvasLayer/HBoxContainer/UI"]
@@ -324,12 +207,6 @@ scale = Vector2(1.25, 1.25)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(157, 5)
 zoom = Vector2(0.7, 0.7)
-script = ExtResource("15_equ1l")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
-libraries = {
-"": SubResource("AnimationLibrary_lwo1q")
-}
 
 [node name="Player" parent="." instance=ExtResource("2_m8xtx")]
 position = Vector2(-552, 318)
@@ -393,6 +270,10 @@ texture = ExtResource("7_yn3ak")
 script = ExtResource("7_j3kr5")
 backgroundSpeed = 70.0
 
+[node name="LoadingShit" parent="." instance=ExtResource("12_3qp1a")]
+position = Vector2(160, 37)
+scale = Vector2(1.5, 1.5)
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-552, 318)
 scale = Vector2(1.9, 1.9)
@@ -402,30 +283,19 @@ pitch_scale = 2.5
 bus = &"sfx"
 script = ExtResource("16_gx0ym")
 
+[connection signal="ready" from="." to="LoadingShit" method="_on_level_ready"]
 [connection signal="addCoin" from="CanvasLayer/HBoxContainer/UI/Score" to="CanvasLayer/HBoxContainer/UI/Money" method="_on_score_add_coin"]
-[connection signal="ChangeTimeAnimation" from="CanvasLayer/HBoxContainer/UI/DestroyTime" to="." method="_on_destroy_time_change_time_animation"]
-[connection signal="ChangeTimeAnimation" from="CanvasLayer/HBoxContainer/UI/DestroyTime" to="CanvasLayer/HBoxContainer/UI/DestroyTime" method="_on_change_time_animation"]
-[connection signal="timeout" from="CanvasLayer/HBoxContainer/UI/DestroyTime/DestroyTimer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="CanvasLayer/HBoxContainer/UI/DestroyTime/DestroyTimer" to="Player" method="_on_destroy_timer_timeout"]
-[connection signal="timeout" from="CanvasLayer/HBoxContainer/UI/DestroyTime/DestroyTimer" to="Player" method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/UI/Up" to="CanvasLayer/HBoxContainer/UI" method="_on_up_pressed"]
 [connection signal="released" from="CanvasLayer/HBoxContainer/UI/Up" to="CanvasLayer/HBoxContainer/UI" method="_on_up_released"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/UI/Down" to="CanvasLayer/HBoxContainer/UI" method="_on_down_pressed"]
 [connection signal="released" from="CanvasLayer/HBoxContainer/UI/Down" to="CanvasLayer/HBoxContainer/UI" method="_on_down_released"]
-[connection signal="playerHasDestroyedCar" from="Player" to="CanvasLayer/HBoxContainer/UI/Money" method="_on_player_player_has_destroyed_car"]
-[connection signal="playerHasDestroyedCar" from="Player" to="CanvasLayer/HBoxContainer/UI/DestroyTime" method="_on_player_player_has_destroyed_car"]
-[connection signal="playerHasDestroyedCar" from="Player" to="Camera2D" method="_on_player_player_has_destroyed_car"]
 [connection signal="playerHasLost" from="Player" to="." method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Score" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Time" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Money" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="Road1" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="Road2" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="city" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="city2" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="city3" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="Clouds2" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="Clouds1" method="_on_player_player_has_lost"]
 [connection signal="playerHasLost" from="Player" to="AudioStreamPlayer2D" method="_on_player_player_has_lost"]
 [connection signal="player_hit" from="Player" to="CanvasLayer/Lifes" method="_on_player_player_hit"]
 [connection signal="sendSpeedToScore" from="Player" to="CanvasLayer/HBoxContainer/UI/Score" method="_on_player_send_speed_to_score"]

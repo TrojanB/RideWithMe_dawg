@@ -160,7 +160,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("9_16qsa")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
@@ -177,6 +176,7 @@ grow_horizontal = 2
 grow_vertical = 0
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
+script = ExtResource("9_16qsa")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/ScrollContainer"]
 layout_mode = 2

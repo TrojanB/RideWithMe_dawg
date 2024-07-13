@@ -1,0 +1,229 @@
+[gd_scene load_steps=12 format=3 uid="uid://cn82p1i5qtdni"]
+
+[ext_resource type="Script" path="res://scripts/select_game_mode.gd" id="1_4ji7l"]
+[ext_resource type="Texture2D" uid="uid://cqxn048r24vja" path="res://Backgrounds/normalMode.png" id="1_ol7vh"]
+[ext_resource type="Texture2D" uid="uid://dhx6dpeixe6ht" path="res://Textures/coin.png" id="1_tr51c"]
+[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="2_26pa1"]
+[ext_resource type="Theme" uid="uid://c7tdqnpiyyqo8" path="res://BASICBUTTON.tres" id="3_kkkt8"]
+[ext_resource type="Theme" uid="uid://bt47ky8s6sja5" path="res://Backgrounds/buttonTheme.tres" id="6_cg5lu"]
+[ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/Icons/speedIcon.png" id="7_vm4e0"]
+
+[sub_resource type="Environment" id="Environment_t3pth"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.16
+glow_strength = 1.42
+glow_blend_mode = 0
+glow_hdr_threshold = 1.3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48hb1"]
+bg_color = Color(0.65124, 0.473238, 0.910081, 1)
+border_width_bottom = 20
+border_color = Color(0.534111, 0.315089, 0.812131, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_savlq"]
+bg_color = Color(0.622755, 0.431488, 0.892143, 1)
+border_width_bottom = 20
+border_color = Color(0.533333, 0.313726, 0.811765, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0xqb"]
+bg_color = Color(0.590617, 0.385536, 0.867223, 1)
+border_width_bottom = 8
+border_color = Color(0.533333, 0.313726, 0.811765, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="SelectGameMode" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ji7l")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NormalMode" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = -244.0
+offset_right = 480.0
+offset_bottom = 86.0
+grow_vertical = 2
+texture = ExtResource("1_ol7vh")
+
+[node name="ModeTitle" type="Label" parent="Panel/NormalMode"]
+modulate = Color(0.122286, 0.521797, 0.82068, 1)
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = -30.0
+offset_right = 176.0
+offset_bottom = 2.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_26pa1")
+theme_override_font_sizes/font_size = 32
+text = "NORMAL MODE"
+
+[node name="Description" type="Label" parent="Panel/NormalMode"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_right = 224.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_26pa1")
+theme_override_font_sizes/font_size = 16
+text = "Try to get as far as you can
+while avoiding cars. The 
+longer you play the harder
+it gets.
+
+BEST OF LUCK!"
+horizontal_alignment = 1
+
+[node name="NormalModeButton" type="Button" parent="Panel/NormalMode/Description"]
+self_modulate = Color(1.1, 1.1, 1.3, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = 15.0
+offset_right = 175.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_kkkt8")
+text = "PLAY"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Panel/NormalMode/Description/NormalModeButton"]
+environment = SubResource("Environment_t3pth")
+
+[node name="DestroyMode" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -224.0
+offset_right = -150.0
+offset_bottom = 76.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_tr51c")
+
+[node name="ModeTitle" type="Label" parent="Panel/DestroyMode"]
+modulate = Color(0.643137, 0.462745, 0.905882, 1)
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = -30.0
+offset_right = 176.0
+offset_bottom = 2.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_26pa1")
+theme_override_font_sizes/font_size = 32
+text = "DESTROY MODE"
+
+[node name="Description" type="Label" parent="Panel/DestroyMode"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -13.0
+offset_right = 256.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_26pa1")
+theme_override_font_sizes/font_size = 16
+text = "TIMER starts. 
+DESTROY cars to add time. 
+When timer hits 0 the game ends.
+
+BEST OF LUCK!"
+horizontal_alignment = 1
+
+[node name="DestroyModeButton" type="Button" parent="Panel/DestroyMode/Description"]
+self_modulate = Color(1.1, 1.1, 1.3, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = 15.0
+offset_right = 175.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_kkkt8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_48hb1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_savlq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p0xqb")
+text = "PLAY"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Panel/DestroyMode/Description/DestroyModeButton"]
+environment = SubResource("Environment_t3pth")
+
+[node name="GoBackButton" type="Button" parent="Panel"]
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.077
+anchor_top = 0.08
+anchor_right = 0.077
+anchor_bottom = 0.08
+offset_left = -68.704
+offset_top = -41.84
+offset_right = 451.296
+offset_bottom = 515.16
+scale = Vector2(0.15, 0.15)
+theme = ExtResource("6_cg5lu")
+icon = ExtResource("7_vm4e0")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="Panel/NormalMode/Description/NormalModeButton" to="." method="_on_normal_mode_button_pressed"]
+[connection signal="pressed" from="Panel/DestroyMode/Description/DestroyModeButton" to="." method="_on_destroy_mode_button_pressed"]
+[connection signal="pressed" from="Panel/GoBackButton" to="." method="_on_go_back_button_pressed"]

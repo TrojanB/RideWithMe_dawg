@@ -1,35 +1,42 @@
 extends Control
 
-@onready var touch_screen_button = $LootBox/TouchScreenButton
-@onready var animation_player = $LootBox/TouchScreenButton/AnimationPlayer
+@onready var loot_box = $LootBox/LootBox
+@onready var animation_player = $LootBox/LootBox/AnimationPlayer
+@onready var card_particles = $LootBox/LootBox/CardParticles
+@onready var falling_particles = $LootBox/LootBox/FallingParticles
 
-@onready var card_pattern = $LootBox/CardPattern/card
+var particleColors = [Color(0.7, 1.3, 0.8, 1),Color(0.7, 1.2, 1.3, 1), Color(1.1, 0.85, 1.3, 1),Color(1.3, 1.3, 0.8, 1)]
+var particleAmount = [50,100,200,350]
+
+@onready var card_pattern = $LootBox/CardPattern
 @onready var upgradeTexture = $LootBox/CardPattern/card/upgradeIcon
 @onready var upgradeLabel = $LootBox/CardPattern/card/upgradeLabel
 @onready var upgradeDef =  $LootBox/CardPattern/card/upgradeIcon/upgradeDef
 @onready var animation_player_card = $LootBox/CardPattern/AnimationPlayerCard
 
+@onready var turningTexture = Menu.turningTexture
+@onready var speedTexture = Menu.speedTexture
+@onready var lifesTexture = Menu.lifesTexture
 
-var tab = [10,20,30,50,80,90,100,150,130]
+@onready var can_open = true
 
-enum rarities {
-	COMMON,
-	UNCOMMON,
-	EPIC,
-	LEGENDARY
-}
+func _ready():
+	falling_particles.emitting = false
+	card_particles.emitting = false
 
-func _on_touch_screen_button_pressed():
-	if Menu.lootboxes > 0:
+func _on_loot_box_pressed():
+	if Menu.lootboxes > 0 and can_open:
+		can_open = false
+		if card_pattern.visible:
+			card_pattern.visible = false
 		Menu.lootboxes -= 1
-		animation_player.play("openLootBox")
-		animation_player_card.play("popUp")
+		animation_player.play("open_lootbox")
 		createLoot()
-	else:
+		restart_particle()
+	elif Menu.lootboxes <= 0:
 		get_tree().change_scene_to_file("res://scenes/Menu.tscn")
 
 func createLoot():
-	card_pattern.get_parent().visible = true
 	var rand1 = randi_range(1,100)
 	var rarity : int 
 	var upgradeType = randi() % Menu.upgradeTypes.size()
@@ -40,20 +47,34 @@ func createLoot():
 	else : rarity = 3
 	
 	var card = UpgradeCard.new()
-	card.upgrade = Menu.upgrades[rarity] + 1
+	card.upgrade = Menu.upgrades[rarity]
 	card.upgradeType = Menu.upgradeTypes[upgradeType]
 	Menu.cards.append(card)
 	
-	card_pattern.self_modulate = Menu.rarityColors[rarity]
-	upgradeLabel.text = "+" + str(rarity + 1)
+	card_pattern.upgrade = card.upgrade
+	card_pattern.upgradeType = card.upgradeType
+	card_pattern.update_card_appearance()
+	apply_particle_color(rarity)
+
+
+func _on_animation_player_card_animation_finished(anim_name):
+	if anim_name == "popUp":
+		animation_player_card.play("idle")
+		can_open = true
+
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "open_lootbox":
+		animation_player_card.play("popUp")
+
+func apply_particle_color(rarity):
+	card_particles.process_material.color = particleColors[rarity]
+	falling_particles.process_material.color = particleColors[rarity]
+	falling_particles.amount = particleAmount[rarity]
 	
-	match upgradeType:
-		0: 
-			upgradeTexture.texture = Menu.turningTexture
-			upgradeDef.text = "for turning"
-		1: 
-			upgradeTexture.texture = Menu.speedTexture
-			upgradeDef.text = "for speed"
-		2: 
-			upgradeTexture.texture = Menu.lifesTexture
-			upgradeDef.text = "lifes"
+func restart_particle():
+	falling_particles.emitting = false
+	card_particles.emitting = false
+	falling_particles.restart()
+	card_particles.restart()

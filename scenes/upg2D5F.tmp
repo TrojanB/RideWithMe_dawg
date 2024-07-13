@@ -1,16 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://cymrnwo463nxp"]
+[gd_scene load_steps=12 format=3 uid="uid://cymrnwo463nxp"]
 
 [ext_resource type="Script" path="res://scripts/upgrade_scene.gd" id="1_ngy4q"]
 [ext_resource type="Texture2D" uid="uid://b2ye16x43f1i" path="res://Backgrounds/garageBg.png" id="1_pcflk"]
 [ext_resource type="PackedScene" uid="uid://cxw5cllo4rcae" path="res://CarSlot.tscn" id="2_nks48"]
-[ext_resource type="Texture2D" uid="uid://y33p2pjrvoir" path="res://card.png" id="3_oi12e"]
+[ext_resource type="Texture2D" uid="uid://y33p2pjrvoir" path="res://Textures/card.png" id="3_oi12e"]
 [ext_resource type="Texture2D" uid="uid://bxwnsmladnjau" path="res://Textures/colorButton.png" id="4_sptx2"]
 [ext_resource type="Theme" uid="uid://bt47ky8s6sja5" path="res://Backgrounds/buttonTheme.tres" id="5_1gpo6"]
 [ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/Icons/speedIcon.png" id="6_ah1ou"]
 [ext_resource type="Script" path="res://scenes/GarageToMenuButton.gd" id="7_uxg0t"]
 [ext_resource type="Script" path="res://scenes/GoBackButton.gd" id="9_8eae2"]
-[ext_resource type="Script" path="res://scenes/UpgradeCardsMenagment.gd" id="9_16qsa"]
-[ext_resource type="Script" path="res://scripts/CardSlot.gd" id="11_fdhcn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6qlf"]
 
@@ -160,7 +158,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("9_16qsa")
+
+[node name="CardSlots" type="HBoxContainer" parent="Panel"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.154
+anchor_right = 0.5
+anchor_bottom = 0.154
+offset_left = -326.0
+offset_top = -49.792
+offset_right = -198.0
+offset_bottom = 22.208
+scale = Vector2(5, 4.376)
+
+[node name="Card1" type="Button" parent="Panel/CardSlots"]
+self_modulate = Color(0.294118, 0.294118, 0.356863, 1)
+layout_mode = 2
+icon = ExtResource("3_oi12e")
+
+[node name="Card2" type="Button" parent="Panel/CardSlots"]
+self_modulate = Color(0.294118, 0.294118, 0.356863, 1)
+layout_mode = 2
+icon = ExtResource("3_oi12e")
+
+[node name="Card3" type="Button" parent="Panel/CardSlots"]
+self_modulate = Color(0.294118, 0.294118, 0.356863, 1)
+layout_mode = 2
+icon = ExtResource("3_oi12e")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
@@ -169,23 +195,23 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -570.0
-offset_top = -237.0
-offset_right = 567.0
-offset_bottom = -16.0
+offset_left = -566.0
+offset_top = -314.0
+offset_right = 1945.0
+offset_bottom = 370.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.45, 0.45)
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/ScrollContainer"]
 layout_mode = 2
+theme_override_constants/margin_top = 200
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 60
+theme_override_constants/separation = 75
 alignment = 1
 
 [node name="GoBackButton" type="Button" parent="Panel"]
@@ -206,38 +232,6 @@ icon = ExtResource("6_ah1ou")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("9_8eae2")
-
-[node name="card0" type="TextureRect" parent="Panel"]
-self_modulate = Color(0.346955, 0.335941, 0.352293, 0.929412)
-layout_mode = 2
-offset_left = 291.0
-offset_top = 50.0
-offset_right = 323.0
-offset_bottom = 122.0
-scale = Vector2(5.5, 4.5)
-texture = ExtResource("3_oi12e")
-script = ExtResource("11_fdhcn")
-slot_index = 0
-
-[node name="card1" type="TextureRect" parent="Panel"]
-self_modulate = Color(0.346955, 0.335941, 0.352293, 0.929412)
-layout_mode = 2
-offset_left = 489.0
-offset_top = 50.0
-offset_right = 521.0
-offset_bottom = 122.0
-scale = Vector2(5.5, 4.5)
-texture = ExtResource("3_oi12e")
-
-[node name="card2" type="TextureRect" parent="Panel"]
-self_modulate = Color(0.346955, 0.335941, 0.352293, 0.929412)
-layout_mode = 2
-offset_left = 687.0
-offset_top = 50.0
-offset_right = 719.0
-offset_bottom = 122.0
-scale = Vector2(5.5, 4.5)
-texture = ExtResource("3_oi12e")
 
 [connection signal="pressed" from="GoBackButton" to="GoBackButton" method="_on_pressed"]
 [connection signal="pressed" from="Panel/GoBackButton" to="Panel/GoBackButton" method="_on_pressed"]

@@ -20,5 +20,5 @@ func _on_player_speed_changed(speed):
 
 
 func _on_player_player_has_lost(playerHasLost):
-	playerHasLost = true
+	playerHasLost = playerHasLost
 	roadSpeed = 0

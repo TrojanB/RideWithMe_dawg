@@ -112,6 +112,21 @@ _data = {
 "time_is_running_out": SubResource("Animation_5462x")
 }
 
+[sub_resource type="Animation" id="Animation_pcxsy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_e0jro"]
 resource_name = "shake"
 length = 0.25
@@ -127,21 +142,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-5, -10), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_pcxsy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lwo1q"]
@@ -406,29 +406,9 @@ script = ExtResource("16_gx0ym")
 [connection signal="ChangeTimeAnimation" from="CanvasLayer/HBoxContainer/UI/DestroyTime" to="." method="_on_destroy_time_change_time_animation"]
 [connection signal="ChangeTimeAnimation" from="CanvasLayer/HBoxContainer/UI/DestroyTime" to="CanvasLayer/HBoxContainer/UI/DestroyTime" method="_on_change_time_animation"]
 [connection signal="timeout" from="CanvasLayer/HBoxContainer/UI/DestroyTime/DestroyTimer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="CanvasLayer/HBoxContainer/UI/DestroyTime/DestroyTimer" to="Player" method="_on_destroy_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/HBoxContainer/UI/DestroyTime/DestroyTimer" to="Player" method="_on_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/HBoxContainer/UI/DestroyTime/DestroyTimer" to="Player" method="_on_destroy_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/UI/Up" to="CanvasLayer/HBoxContainer/UI" method="_on_up_pressed"]
 [connection signal="released" from="CanvasLayer/HBoxContainer/UI/Up" to="CanvasLayer/HBoxContainer/UI" method="_on_up_released"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/UI/Down" to="CanvasLayer/HBoxContainer/UI" method="_on_down_pressed"]
 [connection signal="released" from="CanvasLayer/HBoxContainer/UI/Down" to="CanvasLayer/HBoxContainer/UI" method="_on_down_released"]
-[connection signal="playerHasDestroyedCar" from="Player" to="CanvasLayer/HBoxContainer/UI/Money" method="_on_player_player_has_destroyed_car"]
-[connection signal="playerHasDestroyedCar" from="Player" to="CanvasLayer/HBoxContainer/UI/DestroyTime" method="_on_player_player_has_destroyed_car"]
-[connection signal="playerHasDestroyedCar" from="Player" to="Camera2D" method="_on_player_player_has_destroyed_car"]
-[connection signal="playerHasLost" from="Player" to="." method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Score" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Time" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="CanvasLayer/HBoxContainer/UI/Money" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="Road1" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="Road2" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="city" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="city2" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="city3" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="Clouds2" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="Clouds1" method="_on_player_player_has_lost"]
-[connection signal="playerHasLost" from="Player" to="AudioStreamPlayer2D" method="_on_player_player_has_lost"]
-[connection signal="player_hit" from="Player" to="CanvasLayer/Lifes" method="_on_player_player_hit"]
-[connection signal="sendSpeedToScore" from="Player" to="CanvasLayer/HBoxContainer/UI/Score" method="_on_player_send_speed_to_score"]
-[connection signal="speed_changed" from="Player" to="." method="_on_player_speed_changed"]
-[connection signal="speed_changed" from="Player" to="Road1" method="_on_player_speed_changed"]
-[connection signal="speed_changed" from="Player" to="Road2" method="_on_player_speed_changed"]

@@ -6,7 +6,7 @@ extends Label
 var length = 0
 
 func _on_score_add_coin():
-	Menu.money += 1
+	Menu.player_data.money += 1
 	money+=1
 	ui_update()
 

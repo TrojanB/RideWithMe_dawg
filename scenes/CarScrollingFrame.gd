@@ -7,10 +7,13 @@ var car_slots = []
 func _ready():
 	add_child(space_filler.instantiate())
 	add_child(space_filler.instantiate())
-	for car in Menu.owned_cars:
-		_create_car_slot(car, true)
-	for car in Menu.cars:
+	
+	for car in Menu.player_data.owned_cars:
+		if car:
+			_create_car_slot(car, true)
+	for car in Menu.player_data.cars:
 		_create_car_slot(car, false)
+		
 	add_child(space_filler.instantiate())
 	add_child(space_filler.instantiate())
 
@@ -43,20 +46,20 @@ func _create_car_slot(car, isBought):
 		var selectButton = car_slot.get_node("SelectButton")
 		var upgradeButton = car_slot.get_node("UpgradeButton")
 		
-		selectButton.connect("pressed", Callable(self, "_on_select_button_pressed").bind(car_slot))
+		selectButton.connect("pressed", Callable(self, "_on_select_button_pressed").bind(car_slot.car_name))
 		upgradeButton.connect("pressed", Callable(self, "_on_upgrade_button_pressed").bind(car_slot))
 		
 		car_slots.append(car_slot)
 		add_child(car_slot)
 
-func _on_SelectButton_pressed(car_slot):
-	var car_name = car_slot.car_name
-	for car_slot_elmnt in car_slots:
-		if car_slot_elmnt.name != car_name:
-			car_slot_elmnt.get_node("SelectButton").text = "SELECT"
+func _on_select_button_pressed(car_slot_name):
+	print("SELECT PRESSED")
+	for car_slot in car_slots:
+		if car_slot.car_name != car_slot_name:
+			car_slot.get_node("SelectButton").text = "SELECT"
 
 func _on_upgrade_button_pressed(car_slot):
-	var car = Menu._find_car(car_slot.car_name, Menu.owned_cars)
+	var car = Menu._find_car(car_slot.car_name, Menu.player_data.owned_cars)
 	if car:
 		Menu.UpgradeCar = car
 	get_tree().change_scene_to_file("res://scenes/upgrade_scene.tscn")

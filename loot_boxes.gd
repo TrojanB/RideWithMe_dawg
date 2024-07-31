@@ -25,15 +25,15 @@ func _ready():
 	card_particles.emitting = false
 
 func _on_loot_box_pressed():
-	if Menu.lootboxes > 0 and can_open:
+	if Menu.player_data.lootboxes > 0 and can_open:
 		can_open = false
 		if card_pattern.visible:
 			card_pattern.visible = false
-		Menu.lootboxes -= 1
+		Menu.player_data.lootboxes -= 1
 		animation_player.play("open_lootbox")
 		createLoot()
 		restart_particle()
-	elif Menu.lootboxes <= 0:
+	elif Menu.player_data.lootboxes <= 0 and can_open:
 		get_tree().change_scene_to_file("res://scenes/Menu.tscn")
 
 func createLoot():
@@ -49,7 +49,7 @@ func createLoot():
 	var card = UpgradeCard.new()
 	card.upgrade = Menu.upgrades[rarity]
 	card.upgradeType = Menu.upgradeTypes[upgradeType]
-	Menu.cards.append(card)
+	Menu.player_data.cards.append(card)
 	
 	card_pattern.upgrade = card.upgrade
 	card_pattern.upgradeType = card.upgradeType
@@ -67,6 +67,7 @@ func _on_animation_player_card_animation_finished(anim_name):
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "open_lootbox":
 		animation_player_card.play("popUp")
+		can_open = false
 
 func apply_particle_color(rarity):
 	card_particles.process_material.color = particleColors[rarity]

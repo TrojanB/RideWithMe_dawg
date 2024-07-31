@@ -10,9 +10,9 @@ var idx = 0
 
 func _ready():
 	
-	for idx in range(len(Menu.cards)):
+	for idx in range(len(Menu.player_data.cards)):
 		var index = idx
-		var card = Menu.cards[index]
+		var card = Menu.player_data.cards[index]
 		create_card(card, index)
 	
 	for card in h_box_container.get_children():

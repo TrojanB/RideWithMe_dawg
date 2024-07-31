@@ -3,7 +3,6 @@ extends Label
 var score:int = 0
 var moneyInverval = 500
 var moneyX = 0
-var highscore = Menu.highscore
 
 signal addCoin()
 
@@ -24,5 +23,5 @@ func _on_player_send_speed_to_score(speed):
 
 
 func _on_player_player_has_lost(playerHasLost):
-	if Menu.highscore < score:
-		Menu.highscore = score
+	if Menu.player_data.highscore < score:
+		Menu.player_data.highscore = score

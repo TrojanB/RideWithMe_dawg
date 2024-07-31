@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cus8fcubhxhco"]
+[gd_scene load_steps=56 format=3 uid="uid://cus8fcubhxhco"]
 
 [ext_resource type="Script" path="res://scenes/Menu.gd" id="1_vb6i4"]
 [ext_resource type="Texture2D" uid="uid://lh0oyy06geao" path="res://Backgrounds/buildings.png" id="2_5co7e"]
@@ -12,7 +12,10 @@
 [ext_resource type="Script" path="res://scenes/SettingsButton.gd" id="9_jaaoc"]
 [ext_resource type="Texture2D" uid="uid://ce2y4o5o2f34x" path="res://Textures/Icons/garageIcon.png" id="10_1183m"]
 [ext_resource type="Script" path="res://scenes/GarageButton.gd" id="10_n56rt"]
+[ext_resource type="Texture2D" uid="uid://d4lce6d8h56j5" path="res://Textures/Icons/tasksIcon.png" id="11_csogc"]
+[ext_resource type="Script" path="res://scripts/TasksButton.gd" id="12_j8jgj"]
 [ext_resource type="Texture2D" uid="uid://cgy0rft3xa07q" path="res://Textures/Icons/settingsIcon.png" id="12_vk5rn"]
+[ext_resource type="Texture2D" uid="uid://blq6yxqg0e3tw" path="res://Textures/Icons/notificationIcon.png" id="13_tdebo"]
 [ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="14_cw8yc"]
 [ext_resource type="Texture2D" uid="uid://b88wpt6xejoua" path="res://Textures/coin1_16x16.png" id="14_g023j"]
 [ext_resource type="Texture2D" uid="uid://cfmb02oh6eou" path="res://Textures/diamond-sh.png" id="14_hc1ki"]
@@ -20,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://b5rwx44ytrafj" path="res://Textures/lootbox1.png" id="18_in0fa"]
 [ext_resource type="Theme" uid="uid://b4ohoegmxa8ud" path="res://CarSlotButton.tres" id="19_dp2yc"]
 [ext_resource type="Script" path="res://scenes/BuyLootBoxButton.gd" id="20_y6g2h"]
+[ext_resource type="PackedScene" uid="uid://dtigrap1pmluk" path="res://scenes/tasks.tscn" id="23_2itun"]
 
 [sub_resource type="Animation" id="Animation_x5y38"]
 length = 0.001
@@ -84,6 +88,28 @@ _data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_0r4mf"]
+
+[sub_resource type="Animation" id="Animation_flpb4"]
+resource_name = "notification"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../notification:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1.36604),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6ofk"]
+_data = {
+"notification": SubResource("Animation_flpb4")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fhan"]
 content_margin_left = 0.0
@@ -398,29 +424,45 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 80.0
+offset_left = 50.0
 offset_top = 106.0
-offset_right = 233.0
-offset_bottom = 161.0
+offset_right = 323.0
+offset_bottom = 213.0
 grow_vertical = 2
-scale = Vector2(2, 2)
 theme = ExtResource("5_cohfj")
 script = ExtResource("10_n56rt")
 
 [node name="garageIcon" type="TextureRect" parent="GarageButton"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.496
-anchor_top = 0.382
-anchor_right = 0.496
-anchor_bottom = 0.382
-offset_left = -23.388
-offset_top = -18.51
-offset_right = 488.612
-offset_bottom = 493.49
-rotation = -0.0872665
-scale = Vector2(0.08, 0.08)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -38.5
+offset_right = 449.0
+offset_bottom = 473.5
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.0698132
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("10_1183m")
+
+[node name="Label" type="Label" parent="GarageButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -8.5
+offset_right = 202.0
+offset_bottom = 28.5
+grow_vertical = 2
+rotation = -0.0698132
+theme_override_fonts/font = ExtResource("14_cw8yc")
+theme_override_font_sizes/font_size = 32
+text = "GARAGE"
 
 [node name="SettingsButton" type="Button" parent="." node_paths=PackedStringArray("settings")]
 layout_mode = 1
@@ -434,7 +476,21 @@ offset_bottom = 90.0
 grow_horizontal = 0
 theme = ExtResource("5_cohfj")
 script = ExtResource("9_jaaoc")
-settings = NodePath("../Settings")
+settings = NodePath("Settings")
+
+[node name="Settings" parent="SettingsButton" instance=ExtResource("15_7l1tu")]
+visible = false
+z_index = 50
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -991.0
+offset_top = 50.0
+offset_right = -91.0
+offset_bottom = 550.0
+grow_horizontal = 0
+grow_vertical = 1
 
 [node name="TextureRect" type="TextureRect" parent="SettingsButton"]
 layout_mode = 1
@@ -451,15 +507,75 @@ rotation = -0.0872665
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("12_vk5rn")
 
-[node name="Settings" parent="." instance=ExtResource("15_7l1tu")]
-visible = false
-z_index = 50
+[node name="TasksButton" type="Button" parent="." node_paths=PackedStringArray("tasks")]
+z_index = 5
 layout_mode = 1
-offset_left = 16.0
-offset_top = 425.0
-offset_right = 171.0
-offset_bottom = 583.776
-scale = Vector2(0.4, 0.4)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 333.0
+offset_top = 76.0
+offset_right = 588.0
+offset_bottom = 187.0
+grow_vertical = 2
+theme = ExtResource("5_cohfj")
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("12_j8jgj")
+tasks = NodePath("../Tasks")
+
+[node name="TextureRect" type="TextureRect" parent="TasksButton"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -68.0
+offset_top = 10.0
+offset_right = -28.0
+offset_bottom = 50.0
+grow_horizontal = 0
+rotation = -0.0698132
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_csogc")
+
+[node name="Label" type="Label" parent="TasksButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.5
+offset_top = -10.0
+offset_right = 52.5
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.0698132
+theme_override_fonts/font = ExtResource("14_cw8yc")
+theme_override_font_sizes/font_size = 32
+text = "TASKS"
+
+[node name="notification" type="TextureRect" parent="TasksButton"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 0
+scale = Vector2(1.08153, 1.08153)
+texture = ExtResource("13_tdebo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TasksButton/notification"]
+root_node = NodePath("../../TextureRect")
+libraries = {
+"": SubResource("AnimationLibrary_k6ofk")
+}
+autoplay = "notification"
 
 [node name="PlayersEarnings" type="Panel" parent="."]
 z_index = 7
@@ -467,9 +583,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -452.0
+offset_left = -550.0
 offset_top = 30.0
-offset_right = -257.0
+offset_right = -355.0
 offset_bottom = 65.0
 grow_horizontal = 0
 scale = Vector2(1.5, 1.5)
@@ -521,8 +637,8 @@ text = "9999
 horizontal_alignment = 2
 
 [node name="DiamondIcon" type="AnimatedSprite2D" parent="PlayersEarnings/Diamonds"]
-position = Vector2(250, 12.5)
-scale = Vector2(3, 3)
+position = Vector2(251.833, 12.5)
+scale = Vector2(3.11458, 3)
 sprite_frames = SubResource("SpriteFrames_8bc61")
 autoplay = "default"
 
@@ -585,9 +701,15 @@ sprite_frames = SubResource("SpriteFrames_5b262")
 animation = &"new_animation"
 autoplay = "new_animation"
 
+[node name="Tasks" parent="." instance=ExtResource("23_2itun")]
+visible = false
+z_index = 25
+layout_mode = 1
+
 [connection signal="pressed" from="PlayButton2" to="PlayButton2" method="_on_pressed"]
 [connection signal="pressed" from="GarageButton" to="GarageButton" method="_on_pressed"]
 [connection signal="button_down" from="SettingsButton" to="SettingsButton" method="_on_button_down"]
 [connection signal="button_up" from="SettingsButton" to="SettingsButton" method="_on_button_up"]
 [connection signal="pressed" from="SettingsButton" to="SettingsButton" method="_on_pressed"]
+[connection signal="pressed" from="TasksButton" to="TasksButton" method="_on_pressed"]
 [connection signal="pressed" from="TextureRect/BuyButton" to="TextureRect/BuyButton" method="_on_pressed"]

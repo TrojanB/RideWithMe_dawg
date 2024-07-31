@@ -1,13 +1,6 @@
 extends Control
 
-@onready var high_score = $HighScore
-var highscore := 0
-var destroy_highscore := 0
-var money := 2000
-var lootboxes := 5
-var cars = []
-var owned_cars = []
-var cards = []
+var player_data := PlayerData.new()
 
 var luxury_cars = {
 	"black_luxury":     preload("res://PlayerCars/LUXURY_GAME/Black_LUXURY_CLEAN_All_000-sheet.png"),
@@ -41,7 +34,6 @@ var sport_cars = {
 	"yellow_sport": preload("res://PlayerCars/SPORT_GAME/Yellow_SPORT_CLEAN_All_000-sheet.png")
 }
 
-var PlayerCar : Car
 var UpgradeCar : Car
 
 var upgrades = [1,2,3,4]
@@ -59,16 +51,13 @@ enum gameModes {
 
 var gameMode = gameModes.NORMAL
 
+var sedan_car = Car.new("SEDAN", 1,1,1, sedan_cars["white_sedan"], [], 0)
+var muscle_car = Car.new("MUSCLE", 1,2,2, muscle_cars["black_musclecar"], [], 150)
+var luxury_car = Car.new("LUXURY", 2,3,4, luxury_cars["white_luxury"], [], 500)
+var sport_car = Car.new("SPORT", 1,3,3, sport_cars["white_sport"], [], 1500)
+
 func _ready():
-	var sedan_car = Car.new("SEDAN", 1,1,1, sedan_cars["white_sedan"], [], 0)
-	var muscle_car = Car.new("MUSCLE", 1,2,2, muscle_cars["black_musclecar"], [], 150)
-	var luxury_car = Car.new("LUXURY", 2,3,4, luxury_cars["white_luxury"], [], 500)
-	var sport_car = Car.new("SPORT", 1,3,3, sport_cars["white_sport"], [], 1500)
-	
-	cars.append_array([muscle_car])
-	owned_cars.append_array([sedan_car, luxury_car, sport_car])
-	
-	PlayerCar = sedan_car
+	load_game()
 	
 	turningTexture = preload("res://Textures/Icons/SteeringWheelIcon.png")
 	speedTexture = preload("res://Textures/Icons/speedIcon.png")
@@ -85,3 +74,21 @@ func _has_car(car_name: String, cars:Array):
 		if car.name == car_name:
 			return true
 	return false
+
+func save_game():
+	var err = ResourceSaver.save(player_data, "user://save_game.tres")
+	if err == OK:
+		print("SAVED")
+	else:
+		print("NOT SAVED", err)
+	
+func load_game():
+	if FileAccess.file_exists("user://save_game.tres"):
+		player_data = ResourceLoader.load("user://save_game.tres")
+		if player_data:
+			return 
+		else:
+			player_data.cars.append_array([muscle_car, luxury_car, sport_car])
+			player_data.owned_cars.append(sedan_car)
+			player_data.PlayerCar = sedan_car
+			save_game()

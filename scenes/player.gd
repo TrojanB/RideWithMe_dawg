@@ -4,9 +4,9 @@ var speeds = [900, 1800, 2700, 3600, 4500,5000,5500,6500,7500,8500,9500]
 var speedMultipliers = [1, 1, 1.5 ,2 , 2.5, 3]
 var handlings = [250, 350, 450, 550, 700]
 
-var speedMultiplier = speedMultipliers[Menu.PlayerCar.speed]
-var handling = handlings[Menu.PlayerCar.handling]
-var lifes = Menu.PlayerCar.lifes
+var speedMultiplier = speedMultipliers[Menu.player_data.PlayerCar.speed]
+var handling = handlings[Menu.player_data.PlayerCar.handling]
+var lifes = Menu.player_data.PlayerCar.lifes
 var is_immortal = false
 
 var intervals = [20,40,80,120,3500]
@@ -38,8 +38,8 @@ var playerLost = false
 
 func _ready():
 	speed_changed.emit(current_speed)
-	if Menu.PlayerCar.carTexture:
-		$Sprite2D.texture = Menu.PlayerCar.carTexture
+	if Menu.player_data.PlayerCar.carTexture:
+		$Sprite2D.texture = Menu.player_data.PlayerCar.carTexture
 	$Sprite2D.frame = 0
 	if Menu.gameMode == Menu.gameModes.DESTROY:
 		destroy_orb.visible = true
@@ -130,6 +130,7 @@ func _player_lost():
 	speed_changed.emit(current_speed)
 	collisionAnimation.play("collision")
 	playerLost = true
+	Menu.save_game()
 			
 	if level:
 		for item in level.get_children():

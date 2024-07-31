@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtigrap1pmluk"]
+
+[ext_resource type="PackedScene" uid="uid://61elo1oqfrvt" path="res://scenes/task.tscn" id="1_5dx35"]
+[ext_resource type="Script" path="res://scripts/TasksPanel.gd" id="1_hwbrh"]
+[ext_resource type="Theme" uid="uid://bt47ky8s6sja5" path="res://Backgrounds/buttonTheme.tres" id="3_js0pa"]
+[ext_resource type="Texture2D" uid="uid://drmvds3i6afqy" path="res://Textures/Icons/speedIcon.png" id="4_1dyxl"]
+
+[node name="Tasks" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hwbrh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 5.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Task" parent="Panel/ScrollContainer/VBoxContainer" instance=ExtResource("1_5dx35")]
+layout_mode = 2
+task_content = "Get the score in one run:"
+
+[node name="Task2" parent="Panel/ScrollContainer/VBoxContainer" instance=ExtResource("1_5dx35")]
+layout_mode = 2
+task_content = "Get total score:"
+
+[node name="Task3" parent="Panel/ScrollContainer/VBoxContainer" instance=ExtResource("1_5dx35")]
+layout_mode = 2
+task_content = "Destroy cars in DESTROY game mode in one run:"
+
+[node name="Task4" parent="Panel/ScrollContainer/VBoxContainer" instance=ExtResource("1_5dx35")]
+layout_mode = 2
+task_content = "Destroy cars in DESTROY game mode:"
+
+[node name="Task5" parent="Panel/ScrollContainer/VBoxContainer" instance=ExtResource("1_5dx35")]
+layout_mode = 2
+task_content = "Own cars:"
+
+[node name="Task6" parent="Panel/ScrollContainer/VBoxContainer" instance=ExtResource("1_5dx35")]
+layout_mode = 2
+task_content = "Destroy cars in NORMAL mode without dying:"
+
+[node name="GoBackButton" type="Button" parent="Panel"]
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.077
+anchor_top = 0.08
+anchor_right = 0.077
+anchor_bottom = 0.08
+offset_left = -78.704
+offset_top = -41.84
+offset_right = 441.296
+offset_bottom = 515.16
+scale = Vector2(0.15, 0.15)
+theme = ExtResource("3_js0pa")
+icon = ExtResource("4_1dyxl")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Panel/GoBackButton" to="." method="_on_go_back_button_pressed"]

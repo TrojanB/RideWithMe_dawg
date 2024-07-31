@@ -1,3 +1,4 @@
+extends Resource
 class_name Car
 
 var name := "[undefined]"
@@ -8,7 +9,7 @@ var carTexture : Texture
 var cards = [null, null, null]
 var price := 0
 
-func _init(_name: String, _lifes: int, _speed: int, _handling: int, _texture: Texture, _cards: Array, _price: int):
+func _init(_name: String = "[undefined]", _lifes: int = 1, _speed: int = 1, _handling: int = 1, _texture: Texture = Menu.lifesTexture, _cards: Array = [], _price: int = 0):
 	name = _name
 	lifes = _lifes
 	speed = _speed

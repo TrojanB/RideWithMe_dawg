@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://61elo1oqfrvt"]
+
+[ext_resource type="Script" path="res://scripts/TaskNode.gd" id="1_aiwid"]
+[ext_resource type="Theme" uid="uid://c7tdqnpiyyqo8" path="res://BASICBUTTON.tres" id="1_lobu2"]
+[ext_resource type="FontFile" uid="uid://b8cicreo266ae" path="res://PressStart2P-Regular.ttf" id="2_fkp3v"]
+
+[node name="Task" type="Panel"]
+custom_minimum_size = Vector2(0, 132)
+offset_right = 1152.0
+offset_bottom = 130.0
+script = ExtResource("1_aiwid")
+task_content = "
+"
+
+[node name="CollectAwardButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -25.0
+offset_bottom = 45.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+theme = ExtResource("1_lobu2")
+theme_override_font_sizes/font_size = 32
+text = "COLLECT"
+
+[node name="TaskLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 99.0
+offset_top = -46.0
+offset_right = 497.0
+offset_bottom = 46.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.727175, 0.680723, 0.98995, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fkp3v")
+theme_override_font_sizes/font_size = 16
+text = "Destroy something or be like idk,do it to collect award bla bla bla bla test text bla bla bla text test"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ProgressLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.56
+anchor_top = 0.5
+anchor_right = 0.56
+anchor_bottom = 0.5
+offset_left = -134.12
+offset_top = -45.0
+offset_right = 164.88
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.861102, 0.715103, 0.202442, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fkp3v")
+theme_override_font_sizes/font_size = 32
+text = "9/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

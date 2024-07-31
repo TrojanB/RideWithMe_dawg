@@ -19,6 +19,7 @@ config/icon="res://Backgrounds/iconCarGame.png"
 
 BakcgroundMusic="*res://bakcground_music.tscn"
 Menu="*res://scenes/Menu.gd"
+Tasks="*res://scripts/Tasks.gd"
 
 [display]
 
